@@ -1,0 +1,86 @@
+---
+const services = [
+	{ label: 'Servicios de software', href: 'https://trizap.net/pages/software-services.html' },
+	{ label: 'Equipo Scrum', href: 'https://trizap.net/pages/scrum-team.html' },
+	{ label: 'Ampliación de equipos', href: 'https://trizap.net/pages/staff-augmentation.html' },
+];
+
+const linkClasses = 'text-[0.85rem] text-[#888] no-underline transition-colors duration-200 hover:text-neutral-900 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900';
+---
+
+<footer class="bg-[#fafafa] pb-5 pt-20 max-[900px]:pt-15">
+	<div class="mx-auto w-full max-w-7xl px-5">
+		<div class="mb-12.5 grid grid-cols-[1fr_1.8fr_1.7fr_1.4fr] gap-10 max-[900px]:grid-cols-2 max-[480px]:grid-cols-1">
+			<div>
+				<a href="/" class="mb-3.75 inline-flex items-start no-underline" aria-label="Trizap, inicio">
+					<img src="/headerDark2.png" alt="Trizap" class="h-6 w-auto" width="324" height="90" />
+				</a>
+				<p class="max-w-55 text-[0.85rem] leading-[1.6] text-[#888]">Construyendo futuro</p>
+			</div>
+
+			<div>
+				<h2 class="mb-5 text-[0.95rem] font-semibold text-neutral-900">EE. UU.</h2>
+				<p class="footer-location m-0 text-[0.85rem] leading-[1.6] text-[#888]">
+					<span class="">Trizap LLC</span>
+					<a class={linkClasses} href="tel:+15053587677">+1 (505) 358-7677</a>
+					<a class={linkClasses} href="mailto:info@trizap.net">info@trizap.net</a>
+					<span class="block">530-B Harkle Road STE 100 / Santa Fe, NM 87505</span>
+					<span class="mt-2 block">Lunes a viernes: 9:00 a 18:00</span>
+				</p>
+			</div>
+
+			<div>
+				<h2 class="mb-5 text-[0.95rem] font-semibold text-neutral-900">Argentina</h2>
+				<p class="footer-location m-0 text-[0.85rem] leading-[1.6] text-[#888]">
+					<span class="">Agencia Programarte SAS</span>
+					<a class={linkClasses} href="tel:+54356415506534">+54 (3564)-15506534</a>
+					<a class={linkClasses} href="mailto:info@trizap.net">info@trizap.net</a>
+					<span class="block">San Luis 733, San Francisco(Cba)</span>
+					<span class="mt-2 block">Lunes a viernes: 9:00 a 18:00</span>
+				</p>
+			</div>
+
+			<nav class="footer-services" aria-label="Servicios">
+				<h2 class="mb-5 text-[0.95rem] font-semibold text-neutral-900">Servicios</h2>
+				<ul class="m-0 list-none p-0">
+					{services.map((service) => (
+						<li class="mb-3" key={service.label}>
+							<a href={service.href} class={linkClasses}>{service.label}</a>
+						</li>
+					))}
+				</ul>
+			</nav>
+		</div>
+
+		<div class="flex justify-between border-t border-[#f0f0f0] pb-2.5 pt-6.25 text-[0.8rem] text-[#888] max-[480px]:flex-col max-[480px]:items-center max-[480px]:gap-3.75">
+			<span>
+				Copyright © todos los derechos reservados por
+				<a href="https://trizap.net/#" class={linkClasses}>Trizap</a>.
+			</span>
+			<nav class="flex gap-5 max-[480px]:flex-wrap max-[480px]:justify-center" aria-label="Legal">
+				<a href="https://trizap.net/pages/terms.html" class={linkClasses}>Términos y condiciones</a>
+				<a href="https://trizap.net/pages/privacy-policy.html" class={linkClasses}>Política de privacidad</a>
+			</nav>
+		</div>
+	</div>
+</footer>
+
+<style>
+	.footer-services ul,
+	.footer-services a {
+		font-size: 0.85rem;
+		line-height: 1.6;
+	}
+
+	.footer-location,
+	.footer-services a {
+		white-space: nowrap;
+	}
+
+	@media (max-width: 900px) {
+		.footer-location,
+		.footer-services a {
+			white-space: normal;
+		}
+	}
+</style>
