@@ -19,7 +19,7 @@ type Props = {
 const defaultLabels: Record<Language, LanguageLabels> = {
 	es: {
 		languageLabel: 'Seleccionar idioma',
-		optionNames: { es: 'Español', en: 'English' },
+		optionNames: { es: 'Español', en: 'Ingles' },
 	},
 	en: {
 		languageLabel: 'Select language',

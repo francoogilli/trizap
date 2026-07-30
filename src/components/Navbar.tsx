@@ -21,7 +21,7 @@ const translations = {
 		nav: ['Inicio', 'Servicio', 'Nosotros', 'Productos', 'Contacto'],
 		brandLabel: 'Inicio de Trizap',
 		languageLabel: 'Seleccionar idioma',
-		languageNames: { es: 'Español', en: 'English' },
+		languageNames: { es: 'Español', en: 'Inglés' },
 	},
 	en: {
 		nav: ['Home', 'Services', 'About', 'Products', 'Contact'],
