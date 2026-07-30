@@ -33,5 +33,31 @@ const {
 	<body>
 		<slot />
 		<Footer />
+		<script is:inline>
+			const applyLanguage = (language) => {
+				const currentLanguage = language === 'en' ? 'en' : 'es';
+
+				document.querySelectorAll('[data-i18n-es][data-i18n-en]').forEach((element) => {
+					const value = element.getAttribute(`data-i18n-${currentLanguage}`);
+					if (value !== null) element.textContent = value;
+				});
+
+				document.querySelectorAll('[data-i18n-aria-label-es][data-i18n-aria-label-en]').forEach((element) => {
+					const value = element.getAttribute(`data-i18n-aria-label-${currentLanguage}`);
+					if (value !== null) element.setAttribute('aria-label', value);
+				});
+
+				document.querySelectorAll('[data-i18n-href-es][data-i18n-href-en]').forEach((element) => {
+					const value = element.getAttribute(`data-i18n-href-${currentLanguage}`);
+					if (value !== null) element.setAttribute('href', value);
+				});
+			};
+
+			applyLanguage(document.documentElement.lang);
+			new MutationObserver(() => applyLanguage(document.documentElement.lang)).observe(document.documentElement, {
+				attributes: true,
+				attributeFilter: ['lang'],
+			});
+		</script>
 	</body>
 </html>
