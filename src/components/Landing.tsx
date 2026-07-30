@@ -64,7 +64,7 @@ function ServiceTicker({ text }: { text: Translation }) {
 	);
 }
 
-export default function AgencyLanding() {
+export default function Landing() {
 	const [language, setLanguage] = useState<Language>('es');
 	const text = translations[language];
 
