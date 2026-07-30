@@ -18,7 +18,7 @@ const companies = [
 
 const translations = {
 	es: {
-		services: ['Identidad de marca', 'Desarrollo de apps', 'Diseño visual', 'Video creativo', 'Iconografía'],
+		services: ['Servicios de software', 'Equipo Scrum', 'Aumento del personal', 'Desarrollo de productos', 'Ingeniería de software', 'Diseño UX/UI', 'Consultoría tecnológica', 'Talento especializado'],
 		servicesAriaLabel: 'Nuestros servicios',
 		eyebrow: 'Construyendo Futuro',
 		subtitle: 'Diseñamos y desarrollamos software a medida para convertir ideas ambiciosas en productos digitales que funcionan.',
@@ -28,7 +28,7 @@ const translations = {
 		partnerLabel: 'Aliados de compañías líderes a nivel global',
 	},
 	en: {
-		services: ['Brand Identity', 'App Development', 'Visual Design', 'Creative Video', 'Iconography'],
+		services: ['Software services', 'Scrum team', 'Staff augmentation', 'Product development', 'Software engineering', 'UX/UI design', 'Technology consulting', 'Specialized talent'],
 		servicesAriaLabel: 'Our services',
 		eyebrow: 'Building the Future',
 		subtitle: 'We design and build custom software to turn ambitious ideas into digital products that work.',
@@ -67,7 +67,7 @@ function ServiceTicker({ text }: { text: Translation }) {
 	return (
 		<div id="servicio" className="service-ticker" aria-label={`${text.servicesAriaLabel}: ${text.services.join(', ')}`}>
 			<div className="ticker-track" aria-hidden="true">
-				{Array.from({ length: 4 }, (_, groupIndex) => (
+				{Array.from({ length: 2 }, (_, groupIndex) => (
 					<div className="ticker-group" key={groupIndex}>
 						{text.services.map((service) => (
 							<span className="service-pill" key={service}>{service}</span>
