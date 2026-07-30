@@ -1,0 +1,43 @@
+---
+import Users3 from 'reicon-react/icons/Users3';
+
+const clients = [
+	{ name: 'Red SOS', src: '/clients/red-sos.png', width: 638, height: 400, imageClass: 'max-w-38.5 max-h-18' },
+	{ name: 'Grido', src: '/clients/grido.png', width: 664, height: 376, imageClass: 'max-w-35.5 max-h-19' },
+	{ name: 'Jerárquicos Salud', src: '/clients/jerarquicos-salud.png', width: 600, height: 250, imageClass: 'max-w-47 max-h-19' },
+	{ name: 'Nissan', src: '/clients/nissan.png', width: 200, height: 167, imageClass: 'max-w-19 max-h-19 max-[809px]:max-w-16 max-[809px]:max-h-16' },
+	{ name: 'AGD', src: '/clients/agd.png', width: 250, height: 120, imageClass: 'max-w-38 max-h-18' },
+	{ name: 'Carossio', src: '/clients/carossio.png', width: 750, height: 333, imageClass: 'max-w-43.5 max-h-18' },
+];
+---
+
+<section id="clientes" class="relative z-5 bg-white px-9 pb-30 pt-28 max-[809px]:px-6 max-[809px]:pb-23 max-[809px]:pt-20.5" aria-labelledby="clients-title">
+	<div class="mx-auto w-full max-w-300">
+		<div class="flex flex-col items-center border-b border-black/8 pb-9.5 text-center max-[809px]:pb-7.5">
+			<Users3 className="mb-3.5 text-(--green)" aria-hidden="true" size={22} weight="Filled" color="currentColor" />
+			<h2 id="clients-title" class="m-0 text-[clamp(48px,6vw,72px)] font-semibold leading-[0.94] tracking-[-0.075em]" data-i18n-es="Clientes" data-i18n-en="Clients">Clientes</h2>
+			<p class="mt-4.25 max-w-117.5 text-[17px] font-normal leading-normal tracking-[-0.03em] text-(--muted) max-[809px]:max-w-97.5 max-[809px]:text-base" data-i18n-es="Empresas que confían en nosotros para crear tecnología que impulsa su crecimiento." data-i18n-en="Companies that trust us to build technology that moves their business forward.">
+				Empresas que confían en nosotros para crear tecnología que impulsa su crecimiento.
+			</p>
+		</div>
+
+		<div class="mt-11.5 grid grid-cols-3 gap-px overflow-hidden rounded-3xl border border-black/9 bg-black/9 max-[809px]:mt-8 max-[809px]:grid-cols-2 max-[809px]:rounded-2xl">
+			{clients.map((client) => (
+				<div class="group flex min-h-44 items-center justify-center bg-white p-8.5 transition-colors duration-200 hover:bg-neutral-50 motion-reduce:transition-none max-[809px]:min-h-34 max-[809px]:px-4.5 max-[809px]:py-6">
+					<img
+						class:list={[
+							'block h-auto w-auto max-h-17 max-w-44 object-contain opacity-64 grayscale transition-all duration-200 group-hover:-translate-y-0.5 group-hover:opacity-88 motion-reduce:transition-none max-[809px]:max-h-15 max-[809px]:max-w-35.5',
+							client.imageClass,
+						]}
+						src={client.src}
+						alt={client.name}
+						width={client.width}
+						height={client.height}
+						loading="lazy"
+						decoding="async"
+					/>
+				</div>
+			))}
+		</div>
+	</div>
+</section>

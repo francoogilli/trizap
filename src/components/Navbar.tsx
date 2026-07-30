@@ -12,20 +12,20 @@ export const LANGUAGE_STORAGE_KEY = 'trizap-language';
 const navItems = [
 	{ href: '/#top' },
 	{ href: '/#servicio' },
-	{ href: '/#nosotros' },
+	{ href: '/#clientes' },
 	{ href: '/#productos' },
 	{ href: 'mailto:hello@alwayzz.studio' },
 ];
 
 const translations = {
 	es: {
-		nav: ['Inicio', 'Servicio', 'Nosotros', 'Productos', 'Contacto'],
+		nav: ['Inicio', 'Servicio', 'Clientes', 'Productos', 'Contacto'],
 		brandLabel: 'Inicio de Trizap',
 		languageLabel: 'Seleccionar idioma',
 		languageNames: { es: 'Español', en: 'Inglés' },
 	},
 	en: {
-		nav: ['Home', 'Services', 'About', 'Products', 'Contact'],
+		nav: ['Home', 'Services', 'Clients', 'Products', 'Contact'],
 		brandLabel: 'Trizap home',
 		languageLabel: 'Select language',
 		languageNames: { es: 'Spanish', en: 'English' },

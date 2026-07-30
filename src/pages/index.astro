@@ -1,10 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import AgencyLanding from '../components/AgencyLanding';
+import Clients from '../components/Clients.astro';
 import CTA from '../components/CTA.astro';
 ---
 
 <Layout>
 	<AgencyLanding client:load />
+	<Clients />
 	<CTA />
 </Layout>

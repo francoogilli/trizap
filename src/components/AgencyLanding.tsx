@@ -3,19 +3,6 @@ import ChartBarTrendUp from 'reicon-react/icons/ChartBarTrendUp';
 import { LANGUAGE_CHANGE_EVENT, type Language } from './Navbar';
 import './agency-landing.css';
 
-const companies = [
-	{ name: 'Airbnb', className: 'partner-airbnb' },
-	{ name: 'Shopify', className: 'partner-shopify' },
-	{ name: 'Notion', className: 'partner-notion' },
-	{ name: 'Linear', className: 'partner-linear' },
-	{ name: 'Webflow', className: 'partner-webflow' },
-	{ name: 'Figma', className: 'partner-figma' },
-	{ name: 'Slack', className: 'partner-slack' },
-	{ name: 'Stripe', className: 'partner-stripe' },
-	{ name: 'Vercel', className: 'partner-vercel' },
-	{ name: 'Framer', className: 'partner-framer' },
-];
-
 const translations = {
 	es: {
 		services: ['Servicios de software', 'Equipo Scrum', 'Aumento del personal', 'Desarrollo de productos', 'Ingeniería de software', 'Diseño UX/UI', 'Consultoría tecnológica', 'Talento especializado'],
@@ -25,7 +12,6 @@ const translations = {
 		primaryCta: 'Contanos tu proyecto',
 		bookTitle: 'Hablemos de tu proyecto',
 		bookDetail: 'Disponible',
-		partnerLabel: 'Aliados de compañías líderes a nivel global',
 	},
 	en: {
 		services: ['Software services', 'Scrum team', 'Staff augmentation', 'Product development', 'Software engineering', 'UX/UI design', 'Technology consulting', 'Specialized talent'],
@@ -35,7 +21,6 @@ const translations = {
 		primaryCta: 'Tell us about your project',
 		bookTitle: 'Let’s talk about your project',
 		bookDetail: 'Available',
-		partnerLabel: 'Partnered with top-tier companies globally',
 	},
 };
 
@@ -76,27 +61,6 @@ function ServiceTicker({ text }: { text: Translation }) {
 				))}
 			</div>
 		</div>
-	);
-}
-
-function TrustedBy({ text }: { text: Translation }) {
-	return (
-		<section id="nosotros" className="trusted-section" aria-label={text.partnerLabel}>
-			<div className="trusted-inner">
-				<p className="trusted-label">{text.partnerLabel}</p>
-				<div className="partner-marquee">
-					<div className="partner-track">
-						{Array.from({ length: 4 }, (_, groupIndex) => (
-							<div className="partner-group" aria-hidden={groupIndex > 0} key={groupIndex}>
-								{companies.map((company) => (
-									<span className={`partner-logo ${company.className}`} key={company.name}>{company.name}</span>
-								))}
-							</div>
-						))}
-					</div>
-				</div>
-			</div>
-		</section>
 	);
 }
 
@@ -150,7 +114,6 @@ export default function AgencyLanding() {
 					<div className="hero-blur" aria-hidden="true" />
 					<div id="productos" className="anchor-target" aria-hidden="true" />
 				</section>
-				<TrustedBy text={text} />
 			</main>
 		</div>
 	);

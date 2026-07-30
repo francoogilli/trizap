@@ -548,105 +548,6 @@
 	bottom: 0;
 }
 
-.trusted-section {
-	position: relative;
-	z-index: 5;
-	padding: 36px;
-	background: var(--bg);
-}
-
-.trusted-inner {
-	display: grid;
-	grid-template-columns: 190px minmax(0, 1fr);
-	gap: 40px;
-	align-items: center;
-	width: 100%;
-	max-width: 1200px;
-	margin: 0 auto;
-}
-
-.trusted-label {
-	max-width: 163px;
-	margin: 0;
-	color: var(--muted);
-	font-size: 14px;
-	font-weight: 500;
-	line-height: 1.35;
-	letter-spacing: -0.025em;
-}
-
-.partner-marquee {
-	min-width: 0;
-	overflow: hidden;
-	mask-image: linear-gradient(90deg, transparent 0%, black 12%, black 88%, transparent 100%);
-}
-
-.partner-track {
-	display: flex;
-	width: max-content;
-	animation: marquee-left 30s linear infinite;
-}
-
-.partner-group {
-	display: flex;
-	flex-shrink: 0;
-	gap: 44px;
-	align-items: center;
-	padding-right: 44px;
-}
-
-.partner-logo {
-	flex-shrink: 0;
-	color: var(--text);
-	font-size: 16px;
-	line-height: 1;
-	white-space: nowrap;
-}
-
-.partner-airbnb {
-	font-family: "Source Serif 4", cursive;
-	font-style: italic;
-	font-weight: 600;
-}
-
-.partner-shopify,
-.partner-stripe {
-	font-family: system-ui, sans-serif;
-	font-weight: 800;
-}
-
-.partner-notion {
-	font-family: Georgia, serif;
-	font-weight: 500;
-}
-
-.partner-linear,
-.partner-vercel {
-	font-family: "Inter", sans-serif;
-	font-weight: 600;
-}
-
-.partner-webflow {
-	font-family: "Inter", sans-serif;
-	font-style: italic;
-	font-weight: 700;
-}
-
-.partner-figma {
-	font-family: system-ui, sans-serif;
-	font-weight: 600;
-}
-
-.partner-slack {
-	font-family: Georgia, serif;
-	font-weight: 700;
-}
-
-.partner-framer {
-	font-family: "Source Serif 4", serif;
-	font-weight: 600;
-}
-
 @keyframes marquee-left {
 	from {
 		transform: translateX(0);
@@ -794,23 +695,10 @@
 		justify-content: flex-start;
 	}
 
-	.trusted-section {
-		padding: 36px 24px 44px;
-	}
-
-	.trusted-inner {
-		grid-template-columns: 1fr;
-		gap: 28px;
-	}
-
-	.trusted-label {
-		max-width: 220px;
-	}
 }
 
 @media (prefers-reduced-motion: reduce) {
 	.ticker-track,
-	.partner-track,
 	.side-lines span,
 	.top-lines span {
 		animation-play-state: paused;
