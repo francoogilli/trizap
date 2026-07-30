@@ -15,7 +15,7 @@ const clients = [
 	<div class="mx-auto w-full max-w-300">
 		<div class="flex flex-col items-center border-b border-black/8 pb-9.5 text-center max-[809px]:pb-7.5">
 			<Users3 className="mb-3.5 text-(--green)" aria-hidden="true" size={22} weight="Filled" color="currentColor" />
-			<h2 id="clients-title" class="m-0 text-[clamp(48px,6vw,72px)] font-semibold leading-[0.94] tracking-[-0.075em]" data-i18n-es="Clientes" data-i18n-en="Clients">Clientes</h2>
+			<h2 id="clients-title" class="m-0 text-[50px] font-semibold leading-[0.94] tracking-[-0.075em]" data-i18n-es="Clientes" data-i18n-en="Clients">Clientes</h2>
 			<p class="mt-4.25 max-w-117.5 text-[17px] font-normal leading-normal tracking-[-0.03em] text-(--muted) max-[809px]:max-w-97.5 max-[809px]:text-base" data-i18n-es="Empresas que confían en nosotros para crear tecnología que impulsa su crecimiento." data-i18n-en="Companies that trust us to build technology that moves their business forward.">
 				Empresas que confían en nosotros para crear tecnología que impulsa su crecimiento.
 			</p>
@@ -26,7 +26,7 @@ const clients = [
 				<div class="group flex min-h-44 items-center justify-center bg-white p-8.5 transition-colors duration-200 hover:bg-neutral-50 motion-reduce:transition-none max-[809px]:min-h-34 max-[809px]:px-4.5 max-[809px]:py-6">
 					<img
 						class:list={[
-							'block h-auto w-auto max-h-17 max-w-44 object-contain opacity-64 grayscale transition-all duration-200 group-hover:-translate-y-0.5 group-hover:opacity-88 motion-reduce:transition-none max-[809px]:max-h-15 max-[809px]:max-w-35.5',
+							'block h-auto w-auto max-h-17 max-w-44 object-contain brightness-0 opacity-70 transition-all duration-200 group-hover:-translate-y-0.5 group-hover:opacity-100 motion-reduce:transition-none max-[809px]:max-h-15 max-[809px]:max-w-35.5',
 							client.imageClass,
 						]}
 						src={client.src}
