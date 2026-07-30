@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import ChartBarTrendUp from 'reicon-react/icons/ChartBarTrendUp';
 import ChevronDown from 'reicon-react/icons/ChevronDown';
 import Globe from 'reicon-react/icons/Globe';
 import './agency-landing.css';
@@ -30,9 +31,9 @@ const translations = {
 		services: ['Identidad de marca', 'Desarrollo de apps', 'Diseño visual', 'Video creativo', 'Iconografía'],
 		servicesAriaLabel: 'Nuestros servicios',
 		eyebrow: 'Construyendo Futuro',
-		subtitle: 'Una comunidad creativa para fundadores, marcas y agencias que quieren software de calidad entregado a su ritmo.',
-		primaryCta: 'Contáctanos',
-		bookTitle: 'Agenda una llamada',
+		subtitle: 'Diseñamos y desarrollamos software a medida para convertir ideas ambiciosas en productos digitales que funcionan.',
+		primaryCta: 'Contanos tu proyecto',
+		bookTitle: 'Hablemos de tu proyecto',
 		bookDetail: 'Disponible',
 		partnerLabel: 'Aliados de compañías líderes a nivel global',
 		drawerDescription: 'Estudio creativo independiente',
@@ -49,9 +50,9 @@ const translations = {
 		services: ['Brand Identity', 'App Development', 'Visual Design', 'Creative Video', 'Iconography'],
 		servicesAriaLabel: 'Our services',
 		eyebrow: 'Building the Future',
-		subtitle: 'A creative community for founders, brands, and agencies who want quality software delivered on their timeline.',
-		primaryCta: 'Contact us',
-		bookTitle: 'Book a call',
+		subtitle: 'We design and build custom software to turn ambitious ideas into digital products that work.',
+		primaryCta: 'Tell us about your project',
+		bookTitle: 'Let’s talk about your project',
 		bookDetail: 'Available',
 		partnerLabel: 'Partnered with top-tier companies globally',
 		drawerDescription: 'Independent creative studio',
@@ -252,7 +253,10 @@ export default function AgencyLanding() {
 				<section className="hero">
 					<CurvedLines />
 					<div className="hero-content">
-						<p className="hero-eyebrow">{text.eyebrow}</p>
+						<p className="hero-eyebrow">
+							<ChartBarTrendUp aria-hidden="true" size={14} weight="Filled" color="currentColor" />
+							<span>{text.eyebrow}</span>
+						</p>
 						<ServiceTicker text={text} />
 						<h1 className="hero-title">
 							{language === 'es' ? (
@@ -263,8 +267,8 @@ export default function AgencyLanding() {
 						</h1>
 						<p className="hero-subtitle">{text.subtitle}</p>
 						<div className="cta-row">
-							<a className="primary-cta" href="#productos">{text.primaryCta}</a>
-							<a className="book-cta" href="mailto:hello@alwayzz.studio?subject=15-minute%20intro%20chat">
+							<a className="primary-cta" href="#contact">{text.primaryCta}</a>
+							<a className="book-cta" href={`mailto:hello@alwayzz.studio?subject=${encodeURIComponent(language === 'es' ? 'Hablemos de tu proyecto' : 'Let’s talk about your project')}`}>
 								<img src="https://framerusercontent.com/images/hfneFL6CHBi5BnNvCeOaqU9HqE4.png" alt="" width="40" height="40" />
 								<span className="book-copy">
 									<span className="book-title">{text.bookTitle}</span>

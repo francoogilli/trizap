@@ -1,7 +1,9 @@
 ---
+import ChartBarTrendUp from 'reicon-react/icons/ChartBarTrendUp';
+
 const title = {
-	es: '¿Listo para construir\nsin fronteras?',
-	en: 'Ready to build\nwithout borders?',
+	es: '¿Tenes un proyecto\nde software en mente?',
+	en: 'Have a software project\nin mind?',
 };
 ---
 
@@ -16,26 +18,29 @@ const title = {
 			</video>
 			<div class="pointer-events-none absolute inset-0 bg-black/35" aria-hidden="true"></div>
 			<div class="relative z-10 flex min-h-90 flex-col items-center justify-center px-10 py-20 text-center max-[640px]:px-6">
-				<p class="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-white/75" data-i18n-es="Construyendo futuro" data-i18n-en="Building the future">Construyendo futuro</p>
+				<p class="mb-5 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/75">
+					<ChartBarTrendUp aria-hidden="true" size={14} weight="Filled" color="currentColor" />
+					<span data-i18n-es="Construyendo futuro" data-i18n-en="Building the future">Construyendo futuro</span>
+				</p>
 				<h2 id="cta-title" class="mb-3.75 whitespace-pre-line text-5xl font-normal leading-[1.1] tracking-[-0.03em] max-[640px]:text-4xl" data-i18n-es={title.es} data-i18n-en={title.en}>
 					{title.es}
 				</h2>
-				<p class="mb-7.5 text-[0.95rem] font-normal text-white/85" data-i18n-es="Software con propósito, diseñado para avanzar contigo." data-i18n-en="Purposeful software, designed to move forward with you.">Software con propósito, diseñado para avanzar contigo.</p>
+				<p class="mb-7.5 text-[0.95rem] font-normal text-white/85" data-i18n-es="Diseñamos y desarrollamos productos digitales que hacen avanzar tu negocio." data-i18n-en="We design and build digital products that move your business forward.">Diseñamos y desarrollamos productos digitales que hacen avanzar tu negocio.</p>
 				<a
 					href="mailto:hello@alwayzz.studio?subject=Hablemos%20de%20mi%20proyecto"
 					data-i18n-href-es="mailto:hello@alwayzz.studio?subject=Hablemos%20de%20mi%20proyecto"
 					data-i18n-href-en="mailto:hello@alwayzz.studio?subject=Lets%20talk%20about%20my%20project"
 					class="rounded-xl bg-neutral-100 px-8 py-3.5 text-[0.95rem] font-semibold text-black no-underline shadow-[0_10px_20px_rgba(0,0,0,0.3)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_14px_30px_rgba(0,0,0,0.4)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900"
 				>
-					<span data-i18n-es="Hablemos de tu proyecto" data-i18n-en="Let's talk about your project">Hablemos de tu proyecto</span>
+					<span data-i18n-es="Iniciar un proyecto" data-i18n-en="Start a project">Iniciar un proyecto</span>
 				</a>
 			</div>
 		</div>
 
 		<div class="flex min-h-90 flex-col justify-center rounded-3xl border border-[#f0f0f0] bg-[#fafafa] p-10 max-[640px]:min-h-0 max-[640px]:p-7">
-			<p class="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#888]" data-i18n-es="Una buena conversación" data-i18n-en="A good conversation">Una buena conversación</p>
-			<h3 class="max-w-70 text-3xl font-normal leading-[1.05] tracking-[-0.04em] text-neutral-900" data-i18n-es="Tu siguiente idea merece una forma clara." data-i18n-en="Your next idea deserves a clear shape.">Tu siguiente idea merece una forma clara.</h3>
-			<p class="mt-5 max-w-75 text-[0.9rem] leading-[1.6] text-[#666]" data-i18n-es="Cuéntanos qué quieres construir y encontraremos el camino más simple para hacerlo realidad." data-i18n-en="Tell us what you want to build and we'll find the simplest path to make it real.">Cuéntanos qué quieres construir y encontraremos el camino más simple para hacerlo realidad.</p>
+			<p class="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#888]" data-i18n-es="De la idea al producto" data-i18n-en="From idea to product">De la idea al producto</p>
+			<h3 class="max-w-70 text-3xl font-normal leading-[1.05] tracking-[-0.04em] text-neutral-900" data-i18n-es="Construimos el software que tu negocio necesita." data-i18n-en="We build the software your business needs.">Construimos el software que tu negocio necesita.</h3>
+			<p class="mt-5 max-w-75 text-[0.9rem] leading-[1.6] text-[#666]" data-i18n-es="Desde un MVP hasta una plataforma completa, te ayudamos a diseñar, desarrollar y lanzar tu próximo producto digital." data-i18n-en="From an MVP to a complete platform, we help you design, build, and launch your next digital product.">Desde un MVP hasta una plataforma completa, te ayudamos a diseñar, desarrollar y lanzar tu próximo producto digital.</p>
 		</div>
 	</div>
 </section>
