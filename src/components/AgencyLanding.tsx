@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import ChevronUp from 'reicon-react/icons/ChevronUp';
+import { useEffect, useRef, useState } from 'react';
+import ChevronDown from 'reicon-react/icons/ChevronDown';
 import Globe from 'reicon-react/icons/Globe';
 import './agency-landing.css';
 
@@ -40,8 +40,9 @@ const translations = {
 		openMenu: 'Abrir menú',
 		closeMenu: 'Cerrar menú',
 		brandLabel: 'Inicio de Trizap',
-		languageLabel: 'Cambiar a inglés',
+		languageLabel: 'Seleccionar idioma',
 		languageCode: 'EN',
+		languageNames: { es: 'Español', en: 'English' },
 	},
 	en: {
 		nav: ['Home', 'Services', 'About', 'Products', 'Contact'],
@@ -58,8 +59,9 @@ const translations = {
 		openMenu: 'Open menu',
 		closeMenu: 'Close menu',
 		brandLabel: 'Trizap home',
-		languageLabel: 'Cambiar a español',
+		languageLabel: 'Select language',
 		languageCode: 'ES',
+		languageNames: { es: 'Spanish', en: 'English' },
 	},
 };
 
@@ -74,26 +76,92 @@ function Brand({ label }: { label: string }) {
 	);
 }
 
-function Navbar({ language, onToggleLanguage, text }: { language: Language; onToggleLanguage: () => void; text: Translation }) {
+function LanguageSelector({ language, onSelectLanguage, text }: { language: Language; onSelectLanguage: (nextLanguage: Language) => void; text: Translation }) {
 	const [isOpen, setIsOpen] = useState(false);
+	const selectorRef = useRef<HTMLDivElement>(null);
+	const triggerRef = useRef<HTMLButtonElement>(null);
+	const languageOptions: Language[] = ['es', 'en'];
 
 	useEffect(() => {
-		document.body.style.overflow = isOpen ? 'hidden' : '';
+		if (!isOpen) return;
 
 		const closeOnEscape = (event: KeyboardEvent) => {
-			if (event.key === 'Escape') setIsOpen(false);
+			if (event.key === 'Escape') {
+				setIsOpen(false);
+				triggerRef.current?.focus();
+			}
+		};
+		const closeOnOutsideClick = (event: PointerEvent) => {
+			if (event.target instanceof Node && !selectorRef.current?.contains(event.target)) setIsOpen(false);
 		};
 
 		window.addEventListener('keydown', closeOnEscape);
+		window.addEventListener('pointerdown', closeOnOutsideClick);
 		return () => {
-			document.body.style.overflow = '';
 			window.removeEventListener('keydown', closeOnEscape);
+			window.removeEventListener('pointerdown', closeOnOutsideClick);
 		};
 	}, [isOpen]);
 
+	const selectLanguage = (nextLanguage: Language) => {
+		onSelectLanguage(nextLanguage);
+		setIsOpen(false);
+		triggerRef.current?.focus();
+	};
+
+	return (
+		<div className="language-selector" ref={selectorRef}>
+			<button
+				ref={triggerRef}
+				className="language-toggle"
+				type="button"
+				aria-haspopup="menu"
+				aria-expanded={isOpen}
+				aria-controls="language-menu"
+				aria-label={text.languageLabel}
+				title={text.languageLabel}
+				onClick={() => setIsOpen((value) => !value)}
+			>
+				<Globe aria-hidden="true" size={15} weight="Outline" color="currentColor" />
+				<span>{language.toUpperCase()}</span>
+				<ChevronDown className={`language-caret ${isOpen ? 'is-open' : ''}`} aria-hidden="true" size={13} weight="Outline" color="currentColor" />
+			</button>
+			{isOpen && (
+				<div id="language-menu" className="language-menu" role="menu" aria-label={text.languageLabel}>
+					{languageOptions.map((option) => (
+						<button
+							className={`language-option ${option === language ? 'is-selected' : ''}`}
+							type="button"
+							role="menuitemradio"
+							aria-checked={option === language}
+							onClick={() => selectLanguage(option)}
+							key={option}
+						>
+							<span className="language-option-code">{option.toUpperCase()}</span>
+							<span>{text.languageNames[option]}</span>
+							{option === language && <span className="language-option-check" aria-hidden="true">✓</span>}
+						</button>
+					))}
+				</div>
+			)}
+		</div>
+	);
+}
+
+function Navbar({ language, onSelectLanguage, text }: { language: Language; onSelectLanguage: (nextLanguage: Language) => void; text: Translation }) {
+	const [isScrolled, setIsScrolled] = useState(false);
+
+	useEffect(() => {
+		const updateScrollState = () => setIsScrolled(window.scrollY > 16);
+
+		updateScrollState();
+		window.addEventListener('scroll', updateScrollState, { passive: true });
+		return () => window.removeEventListener('scroll', updateScrollState);
+	}, []);
+
 	return (
 		<>
-			<header className="site-header">
+			<header className={`site-header ${isScrolled ? 'is-scrolled' : ''}`}>
 				<nav className="navbar" aria-label="Main navigation">
 					<Brand label={text.brandLabel} />
 					<div className="header-links">
@@ -103,37 +171,9 @@ function Navbar({ language, onToggleLanguage, text }: { language: Language; onTo
 							</a>
 						))}
 					</div>
-					<button className="language-toggle" type="button" onClick={onToggleLanguage} aria-label={text.languageLabel} title={text.languageLabel}>
-						<Globe aria-hidden="true" size={15} weight="Outline" color="currentColor" />
-						<span>{text.languageCode}</span>
-					</button>
-					<button
-						className={`menu-button ${isOpen ? 'is-open' : ''}`}
-						type="button"
-						aria-expanded={isOpen}
-						aria-controls="navigation-drawer"
-						aria-label={isOpen ? text.closeMenu : text.openMenu}
-						onClick={() => setIsOpen((value) => !value)}
-					>
-						<span>{text.menu}</span>
-						<ChevronUp aria-hidden="true" size={16} weight="Outline" color="currentColor" />
-					</button>
+					<LanguageSelector language={language} onSelectLanguage={onSelectLanguage} text={text} />
 				</nav>
 			</header>
-
-			<div id="navigation-drawer" className={`menu-drawer ${isOpen ? 'is-open' : ''}`} aria-hidden={!isOpen}>
-				<nav className="drawer-navigation" aria-label="Menu">
-					{navItems.map((link, index) => (
-						<a href={link.href} onClick={() => setIsOpen(false)} key={text.nav[index]}>
-							{text.nav[index]}
-						</a>
-					))}
-				</nav>
-				<footer className="drawer-footer">
-					<span>{text.drawerDescription}</span>
-					<span>© {new Date().getFullYear()} Trizap</span>
-				</footer>
-			</div>
 		</>
 	);
 }
@@ -200,7 +240,6 @@ function TrustedBy({ text }: { text: Translation }) {
 export default function AgencyLanding() {
 	const [language, setLanguage] = useState<Language>('es');
 	const text = translations[language];
-	const toggleLanguage = () => setLanguage((current) => (current === 'es' ? 'en' : 'es'));
 
 	useEffect(() => {
 		document.documentElement.lang = language;
@@ -208,7 +247,7 @@ export default function AgencyLanding() {
 
 	return (
 		<div className="landing-page" id="top">
-			<Navbar language={language} onToggleLanguage={toggleLanguage} text={text} />
+			<Navbar language={language} onSelectLanguage={setLanguage} text={text} />
 			<main>
 				<section className="hero">
 					<CurvedLines />

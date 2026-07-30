@@ -11,6 +11,16 @@
 	right: 0;
 	left: 0;
 	z-index: 102;
+	border-bottom: 1px solid transparent;
+	transition: background-color 220ms ease, border-color 220ms ease, box-shadow 220ms ease, backdrop-filter 220ms ease;
+}
+
+.site-header.is-scrolled {
+	background: rgba(255, 255, 255, 0.78);
+	border-bottom-color: rgba(10, 10, 10, 0.08);
+	box-shadow: 0 10px 30px rgba(10, 10, 10, 0.06);
+	backdrop-filter: blur(18px) saturate(1.15);
+	-webkit-backdrop-filter: blur(18px) saturate(1.15);
 }
 
 .navbar {
@@ -21,6 +31,12 @@
 	max-width: 1200px;
 	margin: 0 auto;
 	padding: 19px 36px;
+	transition: padding 220ms ease;
+}
+
+.site-header.is-scrolled .navbar {
+	padding-top: 12px;
+	padding-bottom: 12px;
 }
 
 .brand {
@@ -79,13 +95,18 @@
 	transform-origin: left;
 }
 
+.language-selector {
+	position: relative;
+	flex-shrink: 0;
+	margin-right: 10px;
+}
+
 .language-toggle {
 	display: inline-flex;
 	gap: 6px;
 	align-items: center;
 	justify-content: center;
 	min-width: 48px;
-	margin-right: 10px;
 	padding: 9px 10px;
 	color: var(--text);
 	font-size: 11px;
@@ -105,8 +126,75 @@
 	transform: translateY(-1px);
 }
 
+.language-toggle[aria-expanded="true"] {
+	background: var(--bg);
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
 .language-toggle svg {
 	flex: 0 0 auto;
+}
+
+.language-caret {
+	transition: transform 180ms ease;
+}
+
+.language-caret.is-open {
+	transform: rotate(180deg);
+}
+
+.language-menu {
+	position: absolute;
+	top: calc(100% + 10px);
+	right: 0;
+	display: grid;
+	min-width: 152px;
+	padding: 6px;
+	background: rgba(255, 255, 255, 0.96);
+	border: 1px solid rgba(10, 10, 10, 0.1);
+	border-radius: 14px;
+	box-shadow: 0 14px 34px rgba(10, 10, 10, 0.12);
+	backdrop-filter: blur(16px);
+	-webkit-backdrop-filter: blur(16px);
+}
+
+.language-option {
+	display: grid;
+	grid-template-columns: 28px 1fr auto;
+	gap: 9px;
+	align-items: center;
+	width: 100%;
+	padding: 10px 9px;
+	color: var(--text);
+	font: inherit;
+	font-size: 12px;
+	font-weight: 500;
+	line-height: 1;
+	text-align: left;
+	cursor: pointer;
+	background: transparent;
+	border: 0;
+	border-radius: 9px;
+	transition: background 160ms ease, color 160ms ease;
+}
+
+.language-option:hover,
+.language-option:focus-visible,
+.language-option.is-selected {
+	background: rgba(10, 10, 10, 0.06);
+}
+
+.language-option-code {
+	color: var(--muted);
+	font-size: 10px;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+}
+
+.language-option-check {
+	color: var(--green);
+	font-size: 14px;
+	font-weight: 700;
 }
 
 .menu-button {
@@ -719,6 +807,11 @@
 	.side-lines span,
 	.top-lines span {
 		animation-play-state: paused;
+	}
+
+	.site-header,
+	.navbar {
+		transition-duration: 0.01ms;
 	}
 
 	.menu-drawer,
