@@ -1,7 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import ChartBarTrendUp from 'reicon-react/icons/ChartBarTrendUp';
-import ChevronDown from 'reicon-react/icons/ChevronDown';
-import Globe from 'reicon-react/icons/Globe';
+import { LANGUAGE_CHANGE_EVENT, type Language } from './Navbar';
 import './agency-landing.css';
 
 const companies = [
@@ -17,17 +16,8 @@ const companies = [
 	{ name: 'Framer', className: 'partner-framer' },
 ];
 
-const navItems = [
-	{ href: '#top' },
-	{ href: '#servicio' },
-	{ href: '#nosotros' },
-	{ href: '#productos' },
-	{ href: 'mailto:hello@alwayzz.studio' },
-];
-
 const translations = {
 	es: {
-		nav: ['Inicio', 'Servicio', 'Nosotros', 'Productos', 'Contacto'],
 		services: ['Identidad de marca', 'Desarrollo de apps', 'Diseño visual', 'Video creativo', 'Iconografía'],
 		servicesAriaLabel: 'Nuestros servicios',
 		eyebrow: 'Construyendo Futuro',
@@ -36,17 +26,8 @@ const translations = {
 		bookTitle: 'Hablemos de tu proyecto',
 		bookDetail: 'Disponible',
 		partnerLabel: 'Aliados de compañías líderes a nivel global',
-		drawerDescription: 'Estudio creativo independiente',
-		menu: 'Menú',
-		openMenu: 'Abrir menú',
-		closeMenu: 'Cerrar menú',
-		brandLabel: 'Inicio de Trizap',
-		languageLabel: 'Seleccionar idioma',
-		languageCode: 'EN',
-		languageNames: { es: 'Español', en: 'English' },
 	},
 	en: {
-		nav: ['Home', 'Services', 'About', 'Products', 'Contact'],
 		services: ['Brand Identity', 'App Development', 'Visual Design', 'Creative Video', 'Iconography'],
 		servicesAriaLabel: 'Our services',
 		eyebrow: 'Building the Future',
@@ -55,129 +36,10 @@ const translations = {
 		bookTitle: 'Let’s talk about your project',
 		bookDetail: 'Available',
 		partnerLabel: 'Partnered with top-tier companies globally',
-		drawerDescription: 'Independent creative studio',
-		menu: 'Menu',
-		openMenu: 'Open menu',
-		closeMenu: 'Close menu',
-		brandLabel: 'Trizap home',
-		languageLabel: 'Select language',
-		languageCode: 'ES',
-		languageNames: { es: 'Spanish', en: 'English' },
 	},
 };
 
-type Language = keyof typeof translations;
 type Translation = (typeof translations)[Language];
-
-function Brand({ label }: { label: string }) {
-	return (
-		<a className="brand" href="#top" aria-label={label}>
-			<img src="/headerDark2.png" alt="" width={324} height={90} />
-		</a>
-	);
-}
-
-function LanguageSelector({ language, onSelectLanguage, text }: { language: Language; onSelectLanguage: (nextLanguage: Language) => void; text: Translation }) {
-	const [isOpen, setIsOpen] = useState(false);
-	const selectorRef = useRef<HTMLDivElement>(null);
-	const triggerRef = useRef<HTMLButtonElement>(null);
-	const languageOptions: Language[] = ['es', 'en'];
-
-	useEffect(() => {
-		if (!isOpen) return;
-
-		const closeOnEscape = (event: KeyboardEvent) => {
-			if (event.key === 'Escape') {
-				setIsOpen(false);
-				triggerRef.current?.focus();
-			}
-		};
-		const closeOnOutsideClick = (event: PointerEvent) => {
-			if (event.target instanceof Node && !selectorRef.current?.contains(event.target)) setIsOpen(false);
-		};
-
-		window.addEventListener('keydown', closeOnEscape);
-		window.addEventListener('pointerdown', closeOnOutsideClick);
-		return () => {
-			window.removeEventListener('keydown', closeOnEscape);
-			window.removeEventListener('pointerdown', closeOnOutsideClick);
-		};
-	}, [isOpen]);
-
-	const selectLanguage = (nextLanguage: Language) => {
-		onSelectLanguage(nextLanguage);
-		setIsOpen(false);
-		triggerRef.current?.focus();
-	};
-
-	return (
-		<div className="language-selector" ref={selectorRef}>
-			<button
-				ref={triggerRef}
-				className="language-toggle"
-				type="button"
-				aria-haspopup="menu"
-				aria-expanded={isOpen}
-				aria-controls="language-menu"
-				aria-label={text.languageLabel}
-				title={text.languageLabel}
-				onClick={() => setIsOpen((value) => !value)}
-			>
-				<Globe aria-hidden="true" size={15} weight="Outline" color="currentColor" />
-				<span>{language.toUpperCase()}</span>
-				<ChevronDown className={`language-caret ${isOpen ? 'is-open' : ''}`} aria-hidden="true" size={13} weight="Outline" color="currentColor" />
-			</button>
-			{isOpen && (
-				<div id="language-menu" className="language-menu" role="menu" aria-label={text.languageLabel}>
-					{languageOptions.map((option) => (
-						<button
-							className={`language-option ${option === language ? 'is-selected' : ''}`}
-							type="button"
-							role="menuitemradio"
-							aria-checked={option === language}
-							onClick={() => selectLanguage(option)}
-							key={option}
-						>
-							<span className="language-option-code">{option.toUpperCase()}</span>
-							<span>{text.languageNames[option]}</span>
-							{option === language && <span className="language-option-check" aria-hidden="true">✓</span>}
-						</button>
-					))}
-				</div>
-			)}
-		</div>
-	);
-}
-
-function Navbar({ language, onSelectLanguage, text }: { language: Language; onSelectLanguage: (nextLanguage: Language) => void; text: Translation }) {
-	const [isScrolled, setIsScrolled] = useState(false);
-
-	useEffect(() => {
-		const updateScrollState = () => setIsScrolled(window.scrollY > 16);
-
-		updateScrollState();
-		window.addEventListener('scroll', updateScrollState, { passive: true });
-		return () => window.removeEventListener('scroll', updateScrollState);
-	}, []);
-
-	return (
-		<>
-			<header className={`site-header ${isScrolled ? 'is-scrolled' : ''}`}>
-				<nav className="navbar" aria-label="Main navigation">
-					<Brand label={text.brandLabel} />
-					<div className="header-links">
-						{navItems.map((link, index) => (
-							<a className="header-link" href={link.href} aria-current={index === 0 ? 'page' : undefined} key={text.nav[index]}>
-								{text.nav[index]}
-							</a>
-						))}
-					</div>
-					<LanguageSelector language={language} onSelectLanguage={onSelectLanguage} text={text} />
-				</nav>
-			</header>
-		</>
-	);
-}
 
 function CurvedLines() {
 	return (
@@ -243,12 +105,20 @@ export default function AgencyLanding() {
 	const text = translations[language];
 
 	useEffect(() => {
-		document.documentElement.lang = language;
-	}, [language]);
+		const currentLanguage = document.documentElement.lang === 'en' ? 'en' : 'es';
+		setLanguage(currentLanguage);
+
+		const syncLanguage = (event: Event) => {
+			const nextLanguage = (event as CustomEvent<Language>).detail;
+			if (nextLanguage === 'es' || nextLanguage === 'en') setLanguage(nextLanguage);
+		};
+
+		window.addEventListener(LANGUAGE_CHANGE_EVENT, syncLanguage);
+		return () => window.removeEventListener(LANGUAGE_CHANGE_EVENT, syncLanguage);
+	}, []);
 
 	return (
 		<div className="landing-page" id="top">
-			<Navbar language={language} onSelectLanguage={setLanguage} text={text} />
 			<main>
 				<section className="hero">
 					<CurvedLines />
