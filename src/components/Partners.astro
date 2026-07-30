@@ -1,0 +1,41 @@
+---
+import Handshake from 'reicon-react/icons/Handshake';
+
+const partners = [
+	{ name: 'Peguit', src: '/partners/peguit.png', width: 180, height: 66, imageClass: 'max-w-45 max-h-17' },
+	{ name: 'Diveria', src: '/partners/diveria.png', width: 198, height: 45, imageClass: 'max-w-49.5 max-h-11.5' },
+	{ name: 'BlueBoot', src: '/partners/blueboot.png', width: 577, height: 165, imageClass: 'max-w-47 max-h-18' },
+	{ name: 'Santex', src: '/partners/santex.png', width: 92, height: 20, imageClass: 'max-w-30 max-h-6' },
+];
+---
+
+<section id="partners" class="relative z-5 bg-white px-9 pb-30 pt-28 max-[809px]:px-6 max-[809px]:pb-23 max-[809px]:pt-20.5" aria-labelledby="partners-title">
+	<div class="mx-auto w-full max-w-300">
+		<div class="flex flex-col items-center pb-9 text-center max-[809px]:pb-7.5">
+			<Handshake className="mb-3.5 text-(--green)" aria-hidden="true" size={22} weight="Filled" color="currentColor" />
+			<h2 id="partners-title" class="m-0 text-[50px] font-semibold leading-[0.94] tracking-[-0.075em]" data-i18n-es="Partners" data-i18n-en="Partners">Partners</h2>
+			<p class="mt-4.25 max-w-117.5 text-[17px] font-normal leading-normal tracking-[-0.03em] text-(--muted) max-[809px]:max-w-97.5 max-[809px]:text-base" data-i18n-es="Alianzas que amplían nuestro alcance y potencian cada proyecto." data-i18n-en="Alliances that extend our reach and strengthen every project.">
+				Alianzas que amplían nuestro alcance y potencian cada proyecto.
+			</p>
+		</div>
+
+		<div class="mt-11.5 grid grid-cols-4 gap-px overflow-hidden rounded-3xl border border-black/9 bg-black/9 max-[809px]:mt-8 max-[809px]:grid-cols-2 max-[809px]:rounded-2xl">
+			{partners.map((partner) => (
+				<div class="group flex min-h-44 items-center justify-center bg-white p-8.5 transition-colors duration-200 hover:bg-neutral-50 motion-reduce:transition-none max-[809px]:min-h-34 max-[809px]:px-4.5 max-[809px]:py-6">
+					<img
+						class:list={[
+							'block h-auto w-auto max-h-17 max-w-44 object-contain brightness-0 opacity-70 transition-all duration-200 group-hover:-translate-y-0.5 group-hover:opacity-100 motion-reduce:transition-none max-[809px]:max-h-15 max-[809px]:max-w-35.5',
+							partner.imageClass,
+						]}
+						src={partner.src}
+						alt={partner.name}
+						width={partner.width}
+						height={partner.height}
+						loading="lazy"
+						decoding="async"
+					/>
+				</div>
+			))}
+		</div>
+	</div>
+</section>
