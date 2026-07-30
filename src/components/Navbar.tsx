@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import Check from 'reicon-react/icons/Check';
 import ChevronDown from 'reicon-react/icons/ChevronDown';
 import Globe from 'reicon-react/icons/Globe';
 import './agency-landing.css';
@@ -104,7 +105,7 @@ function LanguageSelector({ language, onSelectLanguage, text }: { language: Lang
 						>
 							<span className="language-option-code">{option.toUpperCase()}</span>
 							<span>{text.languageNames[option]}</span>
-							{option === language && <span className="language-option-check" aria-hidden="true">✓</span>}
+							{option === language && <Check className="language-option-check" aria-hidden="true" size={14} weight="Filled" color="var(--green)" />}
 						</button>
 					))}
 				</div>
