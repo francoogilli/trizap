@@ -69,8 +69,7 @@ type Translation = (typeof translations)[Language];
 function Brand({ label }: { label: string }) {
 	return (
 		<a className="brand" href="#top" aria-label={label}>
-			<span>Trizap</span>
-			<sup>®</sup>
+			<img src="/headerDark2.png" alt="" width={324} height={90} />
 		</a>
 	);
 }
