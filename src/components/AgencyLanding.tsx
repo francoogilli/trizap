@@ -1,14 +1,7 @@
 import { useEffect, useState } from 'react';
-import { ChevronUp } from 'lucide-react';
+import ChevronUp from 'reicon-react/icons/ChevronUp';
+import Globe from 'reicon-react/icons/Globe';
 import './agency-landing.css';
-
-const services = [
-	'Brand Identity',
-	'App Development',
-	'Visual Design',
-	'Creative Video',
-	'Iconography',
-];
 
 const companies = [
 	{ name: 'Airbnb', className: 'partner-airbnb' },
@@ -23,18 +16,66 @@ const companies = [
 	{ name: 'Framer', className: 'partner-framer' },
 ];
 
-const navLinks = ['Projects', 'Plans', 'Team', 'FAQs', 'Get in Touch'];
+const navItems = [
+	{ href: '#top' },
+	{ href: '#servicio' },
+	{ href: '#nosotros' },
+	{ href: '#productos' },
+	{ href: 'mailto:hello@alwayzz.studio' },
+];
 
-function Brand() {
+const translations = {
+	es: {
+		nav: ['Inicio', 'Servicio', 'Nosotros', 'Productos', 'Contacto'],
+		services: ['Identidad de marca', 'Desarrollo de apps', 'Diseño visual', 'Video creativo', 'Iconografía'],
+		servicesAriaLabel: 'Nuestros servicios',
+		eyebrow: 'Construyendo Futuro',
+		subtitle: 'Una comunidad creativa para fundadores, marcas y agencias que quieren software de calidad entregado a su ritmo.',
+		primaryCta: 'Contáctanos',
+		bookTitle: 'Agenda una llamada',
+		bookDetail: 'Disponible',
+		partnerLabel: 'Aliados de compañías líderes a nivel global',
+		drawerDescription: 'Estudio creativo independiente',
+		menu: 'Menú',
+		openMenu: 'Abrir menú',
+		closeMenu: 'Cerrar menú',
+		brandLabel: 'Inicio de Trizap',
+		languageLabel: 'Cambiar a inglés',
+		languageCode: 'EN',
+	},
+	en: {
+		nav: ['Home', 'Services', 'About', 'Products', 'Contact'],
+		services: ['Brand Identity', 'App Development', 'Visual Design', 'Creative Video', 'Iconography'],
+		servicesAriaLabel: 'Our services',
+		eyebrow: 'Building the Future',
+		subtitle: 'A creative community for founders, brands, and agencies who want quality software delivered on their timeline.',
+		primaryCta: 'Contact us',
+		bookTitle: 'Book a call',
+		bookDetail: 'Available',
+		partnerLabel: 'Partnered with top-tier companies globally',
+		drawerDescription: 'Independent creative studio',
+		menu: 'Menu',
+		openMenu: 'Open menu',
+		closeMenu: 'Close menu',
+		brandLabel: 'Trizap home',
+		languageLabel: 'Cambiar a español',
+		languageCode: 'ES',
+	},
+};
+
+type Language = keyof typeof translations;
+type Translation = (typeof translations)[Language];
+
+function Brand({ label }: { label: string }) {
 	return (
-		<a className="brand" href="#top" aria-label="Alwayzz home">
+		<a className="brand" href="#top" aria-label={label}>
 			<span>Trizap</span>
 			<sup>®</sup>
 		</a>
 	);
 }
 
-function Navbar() {
+function Navbar({ language, onToggleLanguage, text }: { language: Language; onToggleLanguage: () => void; text: Translation }) {
 	const [isOpen, setIsOpen] = useState(false);
 
 	useEffect(() => {
@@ -55,36 +96,43 @@ function Navbar() {
 		<>
 			<header className="site-header">
 				<nav className="navbar" aria-label="Main navigation">
-					<Brand />
+					<Brand label={text.brandLabel} />
+					<div className="header-links">
+						{navItems.map((link, index) => (
+							<a className="header-link" href={link.href} aria-current={index === 0 ? 'page' : undefined} key={text.nav[index]}>
+								{text.nav[index]}
+							</a>
+						))}
+					</div>
+					<button className="language-toggle" type="button" onClick={onToggleLanguage} aria-label={text.languageLabel} title={text.languageLabel}>
+						<Globe aria-hidden="true" size={15} weight="Outline" color="currentColor" />
+						<span>{text.languageCode}</span>
+					</button>
 					<button
 						className={`menu-button ${isOpen ? 'is-open' : ''}`}
 						type="button"
 						aria-expanded={isOpen}
 						aria-controls="navigation-drawer"
-						aria-label={isOpen ? 'Close menu' : 'Open menu'}
+						aria-label={isOpen ? text.closeMenu : text.openMenu}
 						onClick={() => setIsOpen((value) => !value)}
 					>
-						<span>Menu</span>
-						<ChevronUp aria-hidden="true" size={16} strokeWidth={2} />
+						<span>{text.menu}</span>
+						<ChevronUp aria-hidden="true" size={16} weight="Outline" color="currentColor" />
 					</button>
 				</nav>
 			</header>
 
-			<div
-				id="navigation-drawer"
-				className={`menu-drawer ${isOpen ? 'is-open' : ''}`}
-				aria-hidden={!isOpen}
-			>
+			<div id="navigation-drawer" className={`menu-drawer ${isOpen ? 'is-open' : ''}`} aria-hidden={!isOpen}>
 				<nav className="drawer-navigation" aria-label="Menu">
-					{navLinks.map((link) => (
-						<a href={link === 'Get in Touch' ? 'mailto:hello@alwayzz.studio' : '#top'} onClick={() => setIsOpen(false)} key={link}>
-							{link}
+					{navItems.map((link, index) => (
+						<a href={link.href} onClick={() => setIsOpen(false)} key={text.nav[index]}>
+							{text.nav[index]}
 						</a>
 					))}
 				</nav>
 				<footer className="drawer-footer">
-					<span>Independent creative studio</span>
-					<span>© {new Date().getFullYear()} Alwayzz</span>
+					<span>{text.drawerDescription}</span>
+					<span>© {new Date().getFullYear()} Trizap</span>
 				</footer>
 			</div>
 		</>
@@ -96,51 +144,31 @@ function CurvedLines() {
 		<div className="line-art" aria-hidden="true">
 			<div className="side-lines side-lines-left">
 				{Array.from({ length: 20 }, (_, index) => (
-					<span
-						key={index}
-						style={{
-							width: `${60 + index * 10}px`,
-							animationDelay: `${index * 0.25}s`,
-						}}
-					/>
+					<span key={index} style={{ width: `${60 + index * 10}px`, animationDelay: `${index * 0.25}s` }} />
 				))}
 			</div>
 			<div className="side-lines side-lines-right">
 				{Array.from({ length: 20 }, (_, index) => (
-					<span
-						key={index}
-						style={{
-							width: `${60 + index * 10}px`,
-							animationDelay: `${index * 0.25}s`,
-						}}
-					/>
+					<span key={index} style={{ width: `${60 + index * 10}px`, animationDelay: `${index * 0.25}s` }} />
 				))}
 			</div>
 			<div className="top-lines">
 				{Array.from({ length: 20 }, (_, index) => (
-					<span
-						key={index}
-						style={{
-							height: `${48 + index * 9}px`,
-							animationDelay: `${index * 0.25}s`,
-						}}
-					/>
+					<span key={index} style={{ height: `${48 + index * 9}px`, animationDelay: `${index * 0.25}s` }} />
 				))}
 			</div>
 		</div>
 	);
 }
 
-function ServiceTicker() {
+function ServiceTicker({ text }: { text: Translation }) {
 	return (
-		<div className="service-ticker" aria-label={`Our services: ${services.join(', ')}`}>
+		<div id="servicio" className="service-ticker" aria-label={`${text.servicesAriaLabel}: ${text.services.join(', ')}`}>
 			<div className="ticker-track" aria-hidden="true">
 				{Array.from({ length: 4 }, (_, groupIndex) => (
 					<div className="ticker-group" key={groupIndex}>
-						{services.map((service) => (
-							<span className="service-pill" key={service}>
-								{service}
-							</span>
+						{text.services.map((service) => (
+							<span className="service-pill" key={service}>{service}</span>
 						))}
 					</div>
 				))}
@@ -149,19 +177,17 @@ function ServiceTicker() {
 	);
 }
 
-function TrustedBy() {
+function TrustedBy({ text }: { text: Translation }) {
 	return (
-		<section className="trusted-section" aria-label="Trusted partners">
+		<section id="nosotros" className="trusted-section" aria-label={text.partnerLabel}>
 			<div className="trusted-inner">
-				<p className="trusted-label">Partnered with top-tier companies globally</p>
+				<p className="trusted-label">{text.partnerLabel}</p>
 				<div className="partner-marquee">
 					<div className="partner-track">
 						{Array.from({ length: 4 }, (_, groupIndex) => (
 							<div className="partner-group" aria-hidden={groupIndex > 0} key={groupIndex}>
 								{companies.map((company) => (
-									<span className={`partner-logo ${company.className}`} key={company.name}>
-										{company.name}
-									</span>
+									<span className={`partner-logo ${company.className}`} key={company.name}>{company.name}</span>
 								))}
 							</div>
 						))}
@@ -173,46 +199,46 @@ function TrustedBy() {
 }
 
 export default function AgencyLanding() {
+	const [language, setLanguage] = useState<Language>('es');
+	const text = translations[language];
+	const toggleLanguage = () => setLanguage((current) => (current === 'es' ? 'en' : 'es'));
+
+	useEffect(() => {
+		document.documentElement.lang = language;
+	}, [language]);
+
 	return (
 		<div className="landing-page" id="top">
-			<Navbar />
+			<Navbar language={language} onToggleLanguage={toggleLanguage} text={text} />
 			<main>
 				<section className="hero">
 					<CurvedLines />
 					<div className="hero-content">
-						<p className="hero-eyebrow">Construyendo Futuro</p>
-						<ServiceTicker />
+						<p className="hero-eyebrow">{text.eyebrow}</p>
+						<ServiceTicker text={text} />
 						<h1 className="hero-title">
-							Somos una comunidad <span className="hero-serif">desarrollando</span> software
+							{language === 'es' ? (
+								<>Somos una comunidad <span className="hero-serif">desarrollando</span> software</>
+							) : (
+								<>We are a community <span className="hero-serif">developing</span> software</>
+							)}
 						</h1>
-						<p className="hero-subtitle">
-							A flexible design partnership for founders, brands, and agencies who want top craft delivered on their timeline.
-						</p>
+						<p className="hero-subtitle">{text.subtitle}</p>
 						<div className="cta-row">
-							<a className="primary-cta" href="#plans">
-								Contáctanos
-							</a>
+							<a className="primary-cta" href="#productos">{text.primaryCta}</a>
 							<a className="book-cta" href="mailto:hello@alwayzz.studio?subject=15-minute%20intro%20chat">
-								<img
-									src="https://framerusercontent.com/images/hfneFL6CHBi5BnNvCeOaqU9HqE4.png"
-									alt=""
-									width="40"
-									height="40"
-								/>
+								<img src="https://framerusercontent.com/images/hfneFL6CHBi5BnNvCeOaqU9HqE4.png" alt="" width="40" height="40" />
 								<span className="book-copy">
-									<span className="book-title">Agenda una llamada</span>
-									<span className="book-detail">
-										<span className="availability-dot" />
-										<span className="availability-text">Disponible</span>
-									</span>
+									<span className="book-title">{text.bookTitle}</span>
+									<span className="book-detail"><span className="availability-dot" /><span className="availability-text">{text.bookDetail}</span></span>
 								</span>
 							</a>
 						</div>
 					</div>
 					<div className="hero-blur" aria-hidden="true" />
-					<div id="plans" className="anchor-target" aria-hidden="true" />
+					<div id="productos" className="anchor-target" aria-hidden="true" />
 				</section>
-				<TrustedBy />
+				<TrustedBy text={text} />
 			</main>
 		</div>
 	);

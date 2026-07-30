@@ -17,9 +17,9 @@
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "astro": "^7.1.5",
-    "lucide-react": "^1.27.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
+    "reicon-react": "^1.1.302",
     "tailwindcss": "^4.3.3"
   }
 }
