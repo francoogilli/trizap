@@ -3,9 +3,9 @@ import Box5 from 'reicon-react/icons/Box5';
 import ArrowRight5 from 'reicon-react/icons/ArrowRight5';
 
 const products = [
-	{ name: 'Fidel', description: 'Tecnología para construir relaciones que perduran.' },
-	{ name: 'Octus', description: 'Soluciones digitales para organizaciones en movimiento.' },
-	{ name: 'Sanabit', description: 'Innovación para una vida más saludable.' },
+	{ name: 'Fidel', description: 'Tecnología para construir relaciones que perduran.', hoverBackground: '/fidel-hover-bg.png' },
+	{ name: 'Octus', description: 'Soluciones digitales para organizaciones en movimiento.', hoverBackground: '/octus-hover-bg.png' },
+	{ name: 'Sanabit', description: 'Innovación para una vida más saludable.', hoverBackground: '/sanabit-hover-bg.png' },
 ];
 
 const hoverProducts = ['Fidel', 'Octus', 'Sanabit'];
@@ -26,8 +26,8 @@ const hoverProducts = ['Fidel', 'Octus', 'Sanabit'];
 				<a href="#contact" class="group relative flex min-h-60 flex-col items-center justify-center overflow-hidden rounded-3xl border border-black/12 bg-white px-6 py-8 text-center no-underline transition-colors duration-300 hover:border-black/30 hover:bg-neutral-50 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--blue) motion-reduce:transition-none sm:min-h-64">
 					{hoverProducts.includes(product.name) && (
 						<>
-							<span class="pointer-events-none absolute inset-0 z-0 bg-[url('/fidel-hover-bg.png')] bg-cover bg-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 motion-reduce:transition-none" aria-hidden="true"></span>
-							<span class="pointer-events-none absolute inset-0 z-0 bg-black/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100 motion-reduce:transition-none" aria-hidden="true"></span>
+							<span class="pointer-events-none absolute inset-0 z-0 bg-cover bg-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 motion-reduce:transition-none" style={`background-image: url('${product.hoverBackground}')`} aria-hidden="true"></span>
+							<span class="pointer-events-none absolute inset-0 z-0 bg-[#23364882] opacity-0 transition-opacity duration-300 group-hover:opacity-100 motion-reduce:transition-none" aria-hidden="true"></span>
 						</>
 					)}
 					{!hoverProducts.includes(product.name) && (
