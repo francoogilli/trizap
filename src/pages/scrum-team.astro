@@ -1,5 +1,6 @@
 ---
 import ChartBarTrendUp from 'reicon-react/icons/ChartBarTrendUp';
+import ArrowLeft5 from 'reicon-react/icons/ArrowLeft5';
 import Layout from '../layouts/Layout.astro';
 
 const benefits = [
@@ -48,6 +49,10 @@ const methodPillars = [
 	<main class="bg-white text-neutral-900" aria-labelledby="scrum-title">
 		<section transition:name="scrum-team-card" class="bg-white px-6 pb-24 pt-28 sm:px-9 sm:pb-30 sm:pt-28" aria-labelledby="scrum-title">
 			<div class="mx-auto w-full max-w-300">
+				<a href="/#servicio" class="mb-10 inline-flex items-center gap-2 text-sm font-medium no-underline transition-transform duration-200 hover:-translate-x-1 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--blue) motion-reduce:transition-none" aria-label="Back to services" data-i18n-aria-label-es="Volver a servicios" data-i18n-aria-label-en="Back to services">
+					<ArrowLeft5 aria-hidden="true" size={18} weight="Outline" color="currentColor" />
+					<span data-i18n-es="Volver a servicios" data-i18n-en="Back to services">Back to services</span>
+				</a>
 				<div class="flex flex-col items-center pb-9 text-center max-[809px]:pb-7.5">
 					<ChartBarTrendUp className="mb-3.5 text-(--blue)" aria-hidden="true" size={22} weight="Filled" color="var(--blue)" />
 					<h1 id="scrum-title" class="m-0 text-[50px] font-semibold leading-[0.94] tracking-[-0.075em] max-[640px]:text-5xl" data-i18n-es="Equipo Scrum" data-i18n-en="Scrum Team">Scrum Team</h1>
