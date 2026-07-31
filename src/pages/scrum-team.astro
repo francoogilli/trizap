@@ -1,0 +1,147 @@
+---
+import ChartBarTrendUp from 'reicon-react/icons/ChartBarTrendUp';
+import Layout from '../layouts/Layout.astro';
+
+const benefits = [
+	{
+		en: 'Regular management of customer expectations.',
+		es: 'Gestión regular de las expectativas del cliente.',
+	},
+	{
+		en: 'Anticipated results.',
+		es: 'Resultados anticipados.',
+	},
+	{
+		en: 'Flexibility and adaptation to change.',
+		es: 'Flexibilidad y adaptación al cambio.',
+	},
+	{
+		en: 'Risk mitigation through team involvement in the business.',
+		es: 'Mitigación de riesgos mediante la participación del equipo en el negocio.',
+	},
+	{
+		en: 'Increased team motivation.',
+		es: 'Mayor motivación del equipo.',
+	},
+	{
+		en: 'Cost optimization for our clients.',
+		es: 'Optimización de costos para nuestros clientes.',
+	},
+	{
+		en: 'Productivity and quality with continuous improvement in processes.',
+		es: 'Productividad y calidad mediante la mejora continua de los procesos.',
+	},
+];
+
+const methodPillars = [
+	{ en: 'Flexibility', es: 'Flexibilidad' },
+	{ en: 'Creativity', es: 'Creatividad' },
+	{ en: 'Productivity', es: 'Productividad' },
+];
+---
+
+<Layout
+	title="Scrum Team | Trizap Software"
+	description="Build software with an experienced Scrum team that adapts to change and works alongside your business."
+	lang="en"
+>
+	<main class="bg-white text-neutral-900" aria-labelledby="scrum-title">
+		<section transition:name="scrum-team-card" class="bg-white px-6 pb-24 pt-28 sm:px-9 sm:pb-30 sm:pt-28" aria-labelledby="scrum-title">
+			<div class="mx-auto w-full max-w-300">
+				<div class="flex flex-col items-center pb-9 text-center max-[809px]:pb-7.5">
+					<ChartBarTrendUp className="mb-3.5 text-(--blue)" aria-hidden="true" size={22} weight="Filled" color="var(--blue)" />
+					<h1 id="scrum-title" class="m-0 text-[50px] font-semibold leading-[0.94] tracking-[-0.075em] max-[640px]:text-5xl" data-i18n-es="Equipo Scrum" data-i18n-en="Scrum Team">Scrum Team</h1>
+					<p class="mt-4.25 max-w-200 text-[17px] font-normal leading-normal tracking-[-0.03em] text-(--muted) max-[809px]:max-w-97.5 max-[809px]:text-base" data-i18n-es="Nuestra experiencia en proyectos y desarrollo de productos nos ha permitido adquirir las mejores prácticas de desarrollo de software, adaptándonos a diferentes escenarios y equipos mediante la implementación de la metodología SCRUM." data-i18n-en="Our experience in projects and product development has allowed us to acquire the best software development practices, adapting to different scenarios and teams by implementing the SCRUM methodology.">
+						Our experience in projects and product development has allowed us to acquire the best software development practices, adapting to different scenarios and teams by implementing the SCRUM methodology.
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="bg-white px-6 pb-30 pt-4 sm:px-9 sm:pt-0" aria-labelledby="scrum-approach-title">
+			<div class="mx-auto grid w-full max-w-300 gap-16 lg:grid-cols-[minmax(0,1.1fr)_minmax(20rem,0.9fr)] lg:gap-24">
+				<div>
+					<p class="mb-8 text-[40px] font-semibold tracking-[-0.07em]">
+						<span data-i18n-es="Scrum en la" data-i18n-en="Scrum in">Scrum in</span>{' '}
+						<span class="hero-serif bg-linear-to-r from-blue-500 to-blue-400 bg-clip-text text-[44px] font-normal text-transparent" data-i18n-es="práctica" data-i18n-en="practice">practice</span>
+					</p>
+					<div class="max-w-165 space-y-5 text-[17px] leading-normal tracking-[-0.03em] text-(--muted) max-[640px]:text-base">
+						<p data-i18n-es="Las metodologías ágiles han demostrado ser una de las formas más efectivas de adaptarse a los cambios durante el ciclo de vida de los proyectos de software." data-i18n-en="Agile methodologies have proven to be one of the most effective ways to adapt to changes during the life cycle of software projects.">
+							Agile methodologies have proven to be one of the most effective ways to adapt to changes during the life cycle of software projects.
+						</p>
+						<p data-i18n-es="En Trizap entendemos que SCRUM es un marco de trabajo que aumenta la flexibilidad, creatividad y productividad del equipo, y nos permite trabajar junto a nuestros clientes para alcanzar eficientemente los objetivos de cada proyecto." data-i18n-en="At Trizap we understand that SCRUM is a framework that increases the flexibility, creativity and productivity of the team, through which it allows us to work together with our clients in order to achieve the goals of each project efficiently.">
+							At Trizap we understand that SCRUM is a framework that increases the flexibility, creativity and productivity of the team, through which it allows us to work together with our clients in order to achieve the goals of each project efficiently.
+						</p>
+					</div>
+				</div>
+
+				<div class="flex flex-col justify-end">
+					<div class="rounded-3xl border border-black/9 bg-neutral-50 p-7 sm:p-10">
+						<p class="m-0 text-4xl font-extrabold tracking-tighter text-neutral-900">SCRUM</p>
+						<p class="mt-3 max-w-85 text-lg leading-snug tracking-[-0.035em] text-neutral-900" data-i18n-es="Un marco de trabajo que aumenta la flexibilidad, creatividad y productividad del equipo." data-i18n-en="A framework that increases the team's flexibility, creativity and productivity.">
+							A framework that increases the team's flexibility, creativity and productivity.
+						</p>
+						<div class="mt-8 grid gap-2 sm:grid-cols-3">
+							{methodPillars.map((pillar) => (
+								<div class="flex items-center gap-2.5 text-sm font-medium text-(--muted)">
+									<span class="h-2 w-2 shrink-0 rounded-full bg-(--blue)" aria-hidden="true"></span>
+									<span data-i18n-es={pillar.es} data-i18n-en={pillar.en}>{pillar.en}</span>
+								</div>
+							))}
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="bg-white px-6 pb-30 pt-24 sm:px-9 sm:pt-28" aria-labelledby="benefits-title">
+			<div class="mx-auto w-full max-w-300">
+				<div class="flex flex-col items-center pb-9 text-center max-[809px]:pb-7.5">
+					<ChartBarTrendUp className="mb-3.5 text-(--blue)" aria-hidden="true" size={22} weight="Filled" color="currentColor" />
+					<h2 id="benefits-title" class="m-0 text-[50px] font-semibold leading-[0.94] tracking-[-0.075em] max-[640px]:text-5xl" data-i18n-es="Beneficios" data-i18n-en="Benefits">Benefits</h2>
+					<p class="mt-4.25 max-w-117.5 text-[17px] font-normal leading-normal tracking-[-0.03em] text-(--muted) max-[809px]:max-w-97.5 max-[809px]:text-base" data-i18n-es="Una forma de trabajo que mejora la visibilidad, la adaptación y la calidad del proyecto." data-i18n-en="A way of working that improves project visibility, adaptability and quality.">
+						A way of working that improves project visibility, adaptability and quality.
+					</p>
+				</div>
+
+				<div class="grid gap-px overflow-hidden rounded-3xl border border-black/9 bg-black/9 sm:grid-cols-2 lg:grid-cols-3 max-[809px]:rounded-2xl">
+					{benefits.map((benefit) => (
+						<article class="group flex min-h-42 items-start gap-4 bg-white p-7 transition-colors duration-200 hover:bg-neutral-50 motion-reduce:transition-none sm:p-8">
+							<span class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-(--blue) text-white transition-transform duration-200 group-hover:scale-105 motion-reduce:transition-none" aria-hidden="true">
+								<svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.25">
+									<path d="m5 12.5 4.5 4.5L19 7.5" />
+								</svg>
+							</span>
+							<p class="m-0 pt-1 text-lg leading-snug tracking-[-0.035em] text-neutral-900" data-i18n-es={benefit.es} data-i18n-en={benefit.en}>{benefit.en}</p>
+						</article>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<section class="bg-white px-6 pb-30 pt-4 sm:px-9 sm:pt-0" aria-labelledby="methodology-title">
+			<div class="mx-auto w-full max-w-300 border-t border-black/9 pt-24 sm:pt-30">
+				<div class="flex flex-col items-center pb-9 text-center max-[809px]:pb-7.5">
+					<ChartBarTrendUp className="mb-3.5 text-(--blue)" aria-hidden="true" size={22} weight="Filled" color="currentColor" />
+					<h2 id="methodology-title" class="m-0 text-[50px] font-semibold leading-[0.94] tracking-[-0.075em] max-[640px]:text-5xl" data-i18n-es="Metodología Scrum" data-i18n-en="Scrum Methodology">Scrum Methodology</h2>
+					<p class="mt-4.25 max-w-117.5 text-[17px] font-normal leading-normal tracking-[-0.03em] text-(--muted) max-[809px]:max-w-97.5 max-[809px]:text-base" data-i18n-es="Trabajamos junto a nuestros clientes para alcanzar los objetivos de cada proyecto de forma eficiente." data-i18n-en="We work alongside our clients to achieve each project's goals efficiently.">
+						We work alongside our clients to achieve each project's goals efficiently.
+					</p>
+				</div>
+
+				<div class="grid gap-px overflow-hidden rounded-3xl border border-black/9 bg-black/9 sm:grid-cols-3 max-[809px]:rounded-2xl">
+					{methodPillars.map((pillar) => (
+						<article class="bg-neutral-50 p-7 sm:p-10">
+							<span class="mb-8 block h-2 w-2 rounded-full bg-(--blue)" aria-hidden="true"></span>
+							<h3 class="m-0 text-2xl font-semibold tracking-tighter text-neutral-900" data-i18n-es={pillar.es} data-i18n-en={pillar.en}>{pillar.en}</h3>
+						</article>
+					))}
+				</div>
+
+				<div class="flex justify-center pt-10">
+					<a href="/#contact" class="rounded-xl bg-neutral-900 px-8 py-3.5 text-[0.95rem] font-semibold text-white no-underline transition-all duration-200 hover:-translate-y-0.5 hover:bg-neutral-700 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900 motion-reduce:transition-none" data-i18n-es="Hablemos de tu proyecto" data-i18n-en="Talk about your project">Talk about your project</a>
+				</div>
+			</div>
+		</section>
+	</main>
+</Layout>

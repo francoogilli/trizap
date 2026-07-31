@@ -54,7 +54,7 @@ function CurvedLines() {
 
 function ServiceTicker({ text }: { text: Translation }) {
 	return (
-		<div id="servicio" className="service-ticker" aria-label={`${text.servicesAriaLabel}: ${text.services.join(', ')}`}>
+		<div className="service-ticker" aria-label={`${text.servicesAriaLabel}: ${text.services.join(', ')}`}>
 			<div className="ticker-track" aria-hidden="true">
 				{Array.from({ length: 2 }, (_, groupIndex) => (
 					<div className="ticker-group" key={groupIndex}>
@@ -85,7 +85,7 @@ export default function Landing() {
 					.from('.hero-subtitle', { autoAlpha: 0, y: 18, duration: 0.55 }, '-=0.45')
 					.from('.cta-row', { autoAlpha: 0, y: 16, duration: 0.55 }, '-=0.3');
 
-				['#about', '#partners', '#clientes', '#contact'].forEach((selector) => {
+				['#about', '#servicio', '#partners', '#clientes', '#contact'].forEach((selector) => {
 					const section = document.querySelector(selector);
 					const content = section?.firstElementChild?.children;
 					if (!section || !content?.length) return;

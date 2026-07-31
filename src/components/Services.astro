@@ -1,0 +1,76 @@
+---
+import ChartBarTrendUp from 'reicon-react/icons/ChartBarTrendUp';
+
+const services = [
+	{
+		icon: 'code',
+		title: 'Servicios de Software',
+		enTitle: 'Software Services',
+		text: 'Nuestros servicios de software te permitirán trabajar con un experimentado equipo de desarrollo con un alto grado de especialización, optimizando el proceso de desarrollo.',
+		enText: 'Our software services connect you with an experienced, highly specialized development team, optimizing your development process.',
+	},
+	{
+		icon: 'scrum',
+		title: 'Equipo Scrum',
+		enTitle: 'Scrum Team',
+		text: 'Nuestra experiencia en proyectos y desarrollo de productos nos ha permitido absorber las mejores prácticas del desarrollo de software adaptándonos a diferentes escenarios y equipos implementando la metodología SCRUM.',
+		enText: 'Our experience in projects and product development has helped us adopt software development best practices, adapting to different scenarios and teams while implementing the SCRUM methodology.',
+	},
+	{
+		icon: 'people',
+		title: 'Aumento del Personal',
+		enTitle: 'Staff Augmentation',
+		text: 'Ofrecemos una amplia variedad de talentosos profesionales preparados para trabajar junto a tu equipo. Ingenieros, desarrolladores, diseñadores UX/UI y scrum masters.',
+		enText: 'We offer a wide range of talented professionals ready to work alongside your team: engineers, developers, UX/UI designers, and scrum masters.',
+	},
+];
+---
+
+<section id="servicio" class="relative z-5 bg-white px-9 pb-30 pt-28 max-[809px]:px-6 max-[809px]:pb-23 max-[809px]:pt-20.5" aria-labelledby="services-title">
+	<div class="mx-auto w-full max-w-300">
+		<div class="flex flex-col items-center pb-9 text-center max-[809px]:pb-7.5">
+			<ChartBarTrendUp className="mb-3.5 text-(--blue)" aria-hidden="true" size={22} weight="Filled" color="currentColor" />
+			<h2 id="services-title" class="m-0 text-[50px] font-semibold leading-[0.94] tracking-[-0.075em] max-[640px]:text-5xl" data-i18n-es="¿Qué Hacemos?" data-i18n-en="What We Do?">¿Qué Hacemos?</h2>
+			<p class="mt-4.25 max-w-117.5 text-[17px] font-normal leading-normal tracking-[-0.03em] text-(--muted) max-[809px]:max-w-97.5 max-[809px]:text-base" data-i18n-es="Un equipo experto para cada etapa: desde construir software hasta sumar capacidad cuando tu proyecto lo necesita." data-i18n-en="An expert team for every stage, from building software to adding capacity when your project needs it.">
+				Un equipo experto para cada etapa: desde construir software hasta sumar capacidad cuando tu proyecto lo necesita.
+			</p>
+		</div>
+
+		<div class="mt-11.5 grid grid-cols-3 gap-px overflow-hidden rounded-3xl border border-black/9 bg-black/9 max-[809px]:mt-8 max-[809px]:grid-cols-1 max-[809px]:rounded-2xl">
+			{services.map((service) => (
+				<article transition:name={service.icon === 'scrum' ? 'scrum-team-card' : undefined} class="group relative flex min-h-84 flex-col bg-white p-7 transition-colors duration-200 hover:bg-neutral-50 motion-reduce:transition-none sm:p-10">
+					{service.icon === 'scrum' && (
+						<a href="/scrum-team/" class="absolute inset-0 z-20 rounded-3xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--blue)" aria-label="View Scrum Team" data-i18n-aria-label-es="Ver Equipo Scrum" data-i18n-aria-label-en="View Scrum Team">
+							<span class="sr-only" data-i18n-es="Ver detalles del Equipo Scrum" data-i18n-en="View Scrum Team details">View Scrum Team details</span>
+						</a>
+					)}
+					<span class="absolute inset-x-8 top-0 h-px origin-left scale-x-0 bg-(--blue) transition-transform duration-300 group-hover:scale-x-100 motion-reduce:transition-none" aria-hidden="true"></span>
+					<div class="flex items-start justify-between gap-4">
+						<span class="flex h-11 w-11 items-center justify-center rounded-2xl border border-black/9 bg-neutral-50 text-(--blue) transition-colors duration-200 group-hover:border-(--blue) group-hover:bg-(--blue) group-hover:text-white motion-reduce:transition-none">
+							{service.icon === 'code' && (
+								<svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true">
+									<path d="m8.5 8-4 4 4 4M15.5 8l4 4-4 4M13.5 5l-3 14" />
+								</svg>
+							)}
+							{service.icon === 'scrum' && (
+								<svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true">
+									<circle cx="12" cy="12" r="7.5" />
+									<path d="M12 4.5v3M19.5 12h-3M12 19.5v-3M4.5 12h3M12 9v3l2 1.5" />
+								</svg>
+							)}
+							{service.icon === 'people' && (
+								<svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true">
+									<circle cx="9" cy="8" r="3" />
+									<path d="M3.5 19c.6-3.2 2.4-5 5.5-5s4.9 1.8 5.5 5M16 11a2.5 2.5 0 1 0 0-5M16 14c2.5 0 4.1 1.4 4.5 4" />
+								</svg>
+							)}
+						</span>
+					</div>
+
+					<h3 class="mt-9 max-w-66 text-2xl font-semibold leading-[1.05] tracking-[-0.055em] text-neutral-900 sm:text-3xl" data-i18n-es={service.title} data-i18n-en={service.enTitle}>{service.title}</h3>
+					<p class="mt-5 max-w-85 text-[15px] leading-relaxed tracking-[-0.015em] text-(--muted)" data-i18n-es={service.text} data-i18n-en={service.enText}>{service.text}</p>
+				</article>
+			))}
+		</div>
+	</div>
+</section>
