@@ -1,6 +1,6 @@
 ---
 import Box5 from 'reicon-react/icons/Box5';
-import ArrowRight from 'reicon-react/icons/ArrowRight';
+import ArrowRight5 from 'reicon-react/icons/ArrowRight5';
 
 const products = [
 	{ name: 'Fidel', description: 'Tecnología para construir relaciones que perduran.' },
@@ -41,9 +41,9 @@ const hoverProducts = ['Fidel', 'Octus', 'Sanabit'];
 					) : (
 						<span class="text-3xl font-semibold tracking-[-0.06em] text-neutral-900 sm:text-4xl">{product.name}</span>
 					)}
-					<span class="absolute bottom-7 z-10 inline-flex items-center gap-1 text-sm font-medium text-neutral-900/55 transition-colors duration-300 group-hover:text-white motion-reduce:transition-none">
+					<span class="absolute bottom-7 z-10 inline-flex items-center gap-1 text-sm font-medium text-neutral-900 transition-colors duration-300 group-hover:text-white motion-reduce:transition-none">
 						<span data-i18n-es="Ver producto" data-i18n-en="View product">Ver producto</span>
-						<ArrowRight aria-hidden="true" size={16} weight="Outline" color="currentColor" />
+						<ArrowRight5 aria-hidden="true" size={16} weight="Outline" color="currentColor" />
 					</span>
 					<span class="sr-only" data-i18n-es={product.description} data-i18n-en={product.description}>{product.description}</span>
 				</a>
