@@ -13,7 +13,7 @@ const navItems = [
 	{ href: '/#top' },
 	{ href: '/#servicio' },
 	{ href: '/#clientes' },
-	{ href: '/#productos' },
+	{ href: '/#products' },
 	{ href: 'mailto:hello@alwayzz.studio' },
 ];
 

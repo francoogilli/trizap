@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
 import ChartBarTrendUp from 'reicon-react/icons/ChartBarTrendUp';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { LANGUAGE_CHANGE_EVENT, type Language } from './Navbar';
 import './agency-landing.css';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const translations = {
 	es: {
@@ -67,6 +71,44 @@ function ServiceTicker({ text }: { text: Translation }) {
 export default function Landing() {
 	const [language, setLanguage] = useState<Language>('es');
 	const text = translations[language];
+
+	useEffect(() => {
+		const context = gsap.context(() => {
+			const media = gsap.matchMedia();
+
+			media.add('(prefers-reduced-motion: no-preference)', () => {
+				const heroTimeline = gsap.timeline({ defaults: { ease: 'power3.out' } });
+				heroTimeline
+					.from('.hero-eyebrow', { autoAlpha: 0, y: 18, duration: 0.65 })
+					.from('.service-ticker', { autoAlpha: 0, y: 14, duration: 0.5 }, '-=0.35')
+					.from('.hero-title', { autoAlpha: 0, y: 30, duration: 0.85 }, '-=0.25')
+					.from('.hero-subtitle', { autoAlpha: 0, y: 18, duration: 0.55 }, '-=0.45')
+					.from('.cta-row', { autoAlpha: 0, y: 16, duration: 0.55 }, '-=0.3');
+
+				['#products', '#about', '#partners', '#clientes', '#contact'].forEach((selector) => {
+					const section = document.querySelector(selector);
+					const content = section?.firstElementChild?.children;
+					if (!section || !content?.length) return;
+
+					gsap.from(content, {
+						autoAlpha: 0,
+						y: 28,
+						duration: 0.8,
+						ease: 'power3.out',
+						scrollTrigger: {
+							trigger: section,
+							start: 'top 82%',
+							once: true,
+						},
+					});
+				});
+			});
+
+			return () => media.revert();
+		});
+
+		return () => context.revert();
+	}, []);
 
 	useEffect(() => {
 		const currentLanguage = document.documentElement.lang === 'en' ? 'en' : 'es';

@@ -322,6 +322,11 @@
 	line-height: 1;
 	letter-spacing: 0.16em;
 	text-transform: uppercase;
+	transition: color 200ms ease;
+}
+
+.hero-eyebrow:hover {
+	color: var(--text);
 }
 
 .hero-eyebrow svg {

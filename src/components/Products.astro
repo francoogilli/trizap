@@ -1,0 +1,51 @@
+---
+import Box5 from 'reicon-react/icons/Box5';
+import ArrowRight from 'reicon-react/icons/ArrowRight';
+
+const products = [
+	{ name: 'Fidel', description: 'Tecnología para construir relaciones que perduran.' },
+	{ name: 'Octus', description: 'Soluciones digitales para organizaciones en movimiento.' },
+	{ name: 'Sanabit', description: 'Innovación para una vida más saludable.' },
+];
+---
+
+<section id="products" class="bg-white px-6 pb-24 pt-24 text-neutral-900 sm:px-9 sm:pb-30 sm:pt-28" aria-labelledby="products-title">
+	<div class="mx-auto w-full max-w-300">
+		<div class="flex flex-col items-center pb-9 text-center max-[809px]:pb-7.5">
+			<Box5 className="mb-3.5 text-(--blue)" aria-hidden="true" size={22} weight="Filled" color="currentColor" />
+			<h2 id="products-title" class="m-0 text-[50px] font-semibold leading-[0.94] tracking-[-0.075em] max-[640px]:text-5xl" data-i18n-es="Nuestros productos" data-i18n-en="Our products">Nuestros productos</h2>
+			<p class="mt-4.25 max-w-117.5 text-[17px] font-normal leading-normal tracking-[-0.03em] text-neutral-900/55 max-[809px]:max-w-97.5 max-[809px]:text-base" data-i18n-es="Productos propios que convierten ideas en experiencias digitales." data-i18n-en="Our own products turning ideas into digital experiences.">
+				Productos propios que convierten ideas en experiencias digitales.
+			</p>
+		</div>
+
+		<div class="grid gap-2 sm:grid-cols-3">
+			{products.map((product) => (
+				<a href="#contact" class="group relative flex min-h-60 flex-col items-center justify-center overflow-hidden rounded-3xl border border-black/12 bg-white px-6 py-8 text-center no-underline transition-colors duration-300 hover:border-black/30 hover:bg-neutral-50 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--blue) motion-reduce:transition-none sm:min-h-64">
+					{product.name === 'Fidel' && (
+						<>
+							<span class="pointer-events-none absolute inset-0 z-0 bg-[url('/fidel-hover-bg.png')] bg-cover bg-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 motion-reduce:transition-none" aria-hidden="true"></span>
+							<span class="pointer-events-none absolute inset-0 z-0 bg-black/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100 motion-reduce:transition-none" aria-hidden="true"></span>
+						</>
+					)}
+					{product.name !== 'Fidel' && (
+						<span class="absolute inset-x-6 top-0 z-10 h-px origin-left scale-x-0 bg-(--blue) transition-transform duration-300 group-hover:scale-x-100 motion-reduce:transition-none" aria-hidden="true"></span>
+					)}
+					{product.name === 'Fidel' ? (
+						<span class="relative z-10 block h-10 w-44 sm:h-12 sm:w-48">
+							<img src="/fidel.png" alt={product.name} class="absolute inset-0 h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-0 motion-reduce:transition-none" width="953" height="943" loading="lazy" decoding="async" />
+							<img src="/fidelw.png" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100 motion-reduce:transition-none" width="953" height="943" loading="lazy" decoding="async" />
+						</span>
+					) : (
+						<span class="text-3xl font-semibold tracking-[-0.06em] text-neutral-900 sm:text-4xl">{product.name}</span>
+					)}
+					<span class="absolute bottom-7 z-10 inline-flex items-center gap-1 text-sm font-medium text-neutral-900/55 transition-colors duration-300 group-hover:text-white motion-reduce:transition-none">
+						<span data-i18n-es="Ver producto" data-i18n-en="View product">Ver producto</span>
+						<ArrowRight aria-hidden="true" size={16} weight="Outline" color="currentColor" />
+					</span>
+					<span class="sr-only" data-i18n-es={product.description} data-i18n-en={product.description}>{product.description}</span>
+				</a>
+			))}
+		</div>
+	</div>
+</section>
