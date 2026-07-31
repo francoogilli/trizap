@@ -85,7 +85,7 @@ export default function Landing() {
 					.from('.hero-subtitle', { autoAlpha: 0, y: 18, duration: 0.55 }, '-=0.45')
 					.from('.cta-row', { autoAlpha: 0, y: 16, duration: 0.55 }, '-=0.3');
 
-				['#products', '#about', '#partners', '#clientes', '#contact'].forEach((selector) => {
+				['#about', '#partners', '#clientes', '#contact'].forEach((selector) => {
 					const section = document.querySelector(selector);
 					const content = section?.firstElementChild?.children;
 					if (!section || !content?.length) return;

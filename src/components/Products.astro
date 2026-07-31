@@ -14,34 +14,34 @@ const hoverProducts = ['Fidel', 'Octus', 'Sanabit'];
 <section id="products" class="bg-white px-6 pb-24 pt-24 text-neutral-900 sm:px-9 sm:pb-30 sm:pt-28" aria-labelledby="products-title">
 	<div class="mx-auto w-full max-w-300">
 		<div class="flex flex-col items-center pb-9 text-center max-[809px]:pb-7.5">
-			<Box5 className="mb-3.5 text-(--blue)" aria-hidden="true" size={22} weight="Filled" color="currentColor" />
-			<h2 id="products-title" class="m-0 text-[50px] font-semibold leading-[0.94] tracking-[-0.075em] max-[640px]:text-5xl" data-i18n-es="Nuestros productos" data-i18n-en="Our products">Nuestros productos</h2>
-			<p class="mt-4.25 max-w-117.5 text-[17px] font-normal leading-normal tracking-[-0.03em] text-neutral-900/55 max-[809px]:max-w-97.5 max-[809px]:text-base" data-i18n-es="Productos propios que convierten ideas en experiencias digitales." data-i18n-en="Our own products turning ideas into digital experiences.">
+			<Box5 className="mb-3.5 text-(--blue)" aria-hidden="true" data-products-icon size={22} weight="Filled" color="currentColor" />
+			<h2 id="products-title" class="m-0 text-[50px] font-semibold leading-[0.94] tracking-[-0.075em] max-[640px]:text-5xl" data-products-title data-i18n-es="Nuestros productos" data-i18n-en="Our products">Nuestros productos</h2>
+			<p class="mt-4.25 max-w-117.5 text-[17px] font-normal leading-normal tracking-[-0.03em] text-neutral-900/55 max-[809px]:max-w-97.5 max-[809px]:text-base" data-products-description data-i18n-es="Productos propios que convierten ideas en experiencias digitales." data-i18n-en="Our own products turning ideas into digital experiences.">
 				Productos propios que convierten ideas en experiencias digitales.
 			</p>
 		</div>
 
 		<div class="grid gap-2 sm:grid-cols-3">
 			{products.map((product) => (
-				<a href="#contact" class="group relative flex min-h-60 flex-col items-center justify-center overflow-hidden rounded-3xl border border-black/12 bg-white px-6 py-8 text-center no-underline transition-colors duration-300 hover:border-black/30 hover:bg-neutral-50 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--blue) motion-reduce:transition-none sm:min-h-64">
+				<a href="#contact" data-product-card class="group relative flex min-h-60 flex-col items-center justify-center overflow-hidden rounded-3xl border border-black/12 bg-white px-6 py-8 text-center no-underline transition-colors duration-300 hover:border-black/30 hover:bg-neutral-50 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--blue) motion-reduce:transition-none sm:min-h-64">
 					{hoverProducts.includes(product.name) && (
 						<>
-							<span class="pointer-events-none absolute inset-0 z-0 bg-cover bg-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 motion-reduce:transition-none" style={`background-image: url('${product.hoverBackground}')`} aria-hidden="true"></span>
-							<span class="pointer-events-none absolute inset-0 z-0 bg-[#23364882] opacity-0 transition-opacity duration-300 group-hover:opacity-100 motion-reduce:transition-none" aria-hidden="true"></span>
+							<span data-product-background class="pointer-events-none absolute inset-0 z-0 scale-100 bg-cover bg-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 motion-reduce:transition-none" style={`background-image: url('${product.hoverBackground}')`} aria-hidden="true"></span>
+							<span data-product-overlay class="pointer-events-none absolute inset-0 z-0 bg-[#23364882] opacity-0 transition-opacity duration-300 group-hover:opacity-100 motion-reduce:transition-none" aria-hidden="true"></span>
 						</>
 					)}
 					{!hoverProducts.includes(product.name) && (
-						<span class="absolute inset-x-6 top-0 z-10 h-px origin-left scale-x-0 bg-(--blue) transition-transform duration-300 group-hover:scale-x-100 motion-reduce:transition-none" aria-hidden="true"></span>
+						<span data-product-accent class="absolute inset-x-6 top-0 z-10 h-px origin-left scale-x-0 bg-(--blue) transition-transform duration-300 group-hover:scale-x-100 motion-reduce:transition-none" aria-hidden="true"></span>
 					)}
 					{hoverProducts.includes(product.name) ? (
-						<span class="relative z-10 block h-10 w-44 sm:h-12 sm:w-48">
-							<img src={`/${product.name.toLowerCase()}.png`} alt={product.name} class="absolute inset-0 h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-0 motion-reduce:transition-none" width="953" height="943" loading="lazy" decoding="async" />
-							<img src={`/${product.name.toLowerCase()}w.png`} alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100 motion-reduce:transition-none" width="953" height="943" loading="lazy" decoding="async" />
+						<span data-product-brand class="relative z-10 block h-10 w-44 sm:h-12 sm:w-48">
+							<img data-product-logo src={`/${product.name.toLowerCase()}.png`} alt={product.name} class="absolute inset-0 h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-0 motion-reduce:transition-none" width="953" height="943" loading="lazy" decoding="async" />
+							<img data-product-logo-hover src={`/${product.name.toLowerCase()}w.png`} alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100 motion-reduce:transition-none" width="953" height="943" loading="lazy" decoding="async" />
 						</span>
 					) : (
 						<span class="text-3xl font-semibold tracking-[-0.06em] text-neutral-900 sm:text-4xl">{product.name}</span>
 					)}
-					<span class="absolute bottom-7 z-10 inline-flex items-center gap-1 text-sm font-medium text-neutral-900 transition-colors duration-300 group-hover:text-white motion-reduce:transition-none">
+					<span data-product-cta class="absolute bottom-7 z-10 inline-flex items-center gap-1 text-sm font-medium text-neutral-900 transition-colors duration-300 group-hover:text-white motion-reduce:transition-none">
 						<span data-i18n-es="Ver producto" data-i18n-en="View product">Ver producto</span>
 						<ArrowRight5 aria-hidden="true" size={16} weight="Outline" color="currentColor" />
 					</span>
@@ -51,3 +51,109 @@ const hoverProducts = ['Fidel', 'Octus', 'Sanabit'];
 		</div>
 	</div>
 </section>
+
+<script>
+	import { gsap } from 'gsap';
+	import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+	gsap.registerPlugin(ScrollTrigger);
+
+	const section = document.querySelector<HTMLElement>('#products');
+
+	if (section) {
+		const icon = section.querySelector<HTMLElement>('[data-products-icon]');
+		const title = section.querySelector<HTMLElement>('[data-products-title]');
+		const description = section.querySelector<HTMLElement>('[data-products-description]');
+		const cards = Array.from(section.querySelectorAll<HTMLElement>('[data-product-card]'));
+		const introElements = [icon, title, description, ...cards].filter((element): element is HTMLElement => Boolean(element));
+
+		const media = gsap.matchMedia();
+		media.add({ reduceMotion: '(prefers-reduced-motion: reduce)' }, ({ conditions }) => {
+			if (conditions?.reduceMotion) {
+				gsap.set(introElements, { clearProps: 'all' });
+				return;
+			}
+
+			const intro = gsap.timeline({
+				defaults: { duration: 0.65, ease: 'power3.out' },
+				scrollTrigger: {
+					trigger: section,
+					start: 'top 80%',
+					once: true,
+				},
+			});
+
+			intro
+				.from(icon, { autoAlpha: 0, rotation: -16, scale: 0.75, duration: 0.45 })
+				.from(title, { autoAlpha: 0, y: 24 }, '-=0.2')
+				.from(description, { autoAlpha: 0, y: 16, duration: 0.5 }, '-=0.3')
+				.from(cards, { autoAlpha: 0, y: 42, scale: 0.96, stagger: 0.12 }, '-=0.15');
+
+			const cleanupCards: Array<() => void> = [];
+
+			cards.forEach((card) => {
+				const background = card.querySelector<HTMLElement>('[data-product-background]');
+				const overlay = card.querySelector<HTMLElement>('[data-product-overlay]');
+				const logo = card.querySelector<HTMLElement>('[data-product-logo]');
+				const hoverLogo = card.querySelector<HTMLElement>('[data-product-logo-hover]');
+				const cta = card.querySelector<HTMLElement>('[data-product-cta]');
+				const accent = card.querySelector<HTMLElement>('[data-product-accent]');
+
+				if (background || overlay || hoverLogo) {
+					const hoverElements = [background, overlay, hoverLogo].filter((element): element is HTMLElement => Boolean(element));
+					gsap.set(hoverElements, { autoAlpha: 0 });
+				}
+
+				const setHoverState = (isActive: boolean) => {
+					const duration = isActive ? 0.45 : 0.35;
+
+					gsap.to(card, {
+						y: isActive ? -6 : 0,
+						scale: isActive ? 1.01 : 1,
+						backgroundColor: isActive ? '#f5f5f5' : '#ffffff',
+						borderColor: isActive ? 'rgba(0, 0, 0, 0.3)' : 'rgba(0, 0, 0, 0.12)',
+						duration,
+						ease: 'power3.out',
+						overwrite: 'auto',
+					});
+
+					if (background) {
+						gsap.to(background, { autoAlpha: isActive ? 1 : 0, scale: isActive ? 1.06 : 1, duration: 0.6, ease: 'power2.out', overwrite: 'auto' });
+					}
+					if (overlay) {
+						gsap.to(overlay, { autoAlpha: isActive ? 1 : 0, duration: 0.4, ease: 'power2.out', overwrite: 'auto' });
+					}
+					if (logo) {
+						gsap.to(logo, { autoAlpha: isActive ? 0 : 1, y: isActive ? -2 : 0, duration, ease: 'power2.out', overwrite: 'auto' });
+					}
+					if (hoverLogo) {
+						gsap.to(hoverLogo, { autoAlpha: isActive ? 1 : 0, y: isActive ? -2 : 0, duration, ease: 'power2.out', overwrite: 'auto' });
+					}
+					if (cta) {
+						gsap.to(cta, { x: isActive ? 4 : 0, color: isActive ? '#ffffff' : '#0a0a0a', duration, ease: 'power2.out', overwrite: 'auto' });
+					}
+					if (accent) {
+						gsap.to(accent, { scaleX: isActive ? 1 : 0, duration, ease: 'power2.out', overwrite: 'auto' });
+					}
+				};
+
+				const handleEnter = () => setHoverState(true);
+				const handleLeave = () => setHoverState(false);
+
+				card.addEventListener('pointerenter', handleEnter);
+				card.addEventListener('pointerleave', handleLeave);
+				card.addEventListener('focusin', handleEnter);
+				card.addEventListener('focusout', handleLeave);
+
+				cleanupCards.push(() => {
+					card.removeEventListener('pointerenter', handleEnter);
+					card.removeEventListener('pointerleave', handleLeave);
+					card.removeEventListener('focusin', handleEnter);
+					card.removeEventListener('focusout', handleLeave);
+				});
+			});
+
+			return () => cleanupCards.forEach((cleanup) => cleanup());
+		});
+	}
+</script>
