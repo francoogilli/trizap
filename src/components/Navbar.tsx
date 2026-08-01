@@ -21,13 +21,13 @@ type NavSection = (typeof navItems)[number]['section'];
 
 const translations = {
 	es: {
-		nav: ['Inicio', 'Servicio', 'Sobre Trizap', 'Productos', 'Contacto'],
+		nav: ['Inicio', 'Servicio', 'Nosotros', 'Productos', 'Contacto'],
 		brandLabel: 'Inicio de Trizap',
 		languageLabel: 'Seleccionar idioma',
 		languageNames: { es: 'Español', en: 'Inglés' },
 	},
 	en: {
-		nav: ['Home', 'Services', 'About Trizap', 'Products', 'Contact'],
+		nav: ['Home', 'Services', 'About', 'Products', 'Contact'],
 		brandLabel: 'Trizap home',
 		languageLabel: 'Select language',
 		languageNames: { es: 'Spanish', en: 'English' },
