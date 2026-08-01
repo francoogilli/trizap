@@ -8,13 +8,49 @@ interface Props {
 	title?: string;
 	description?: string;
 	lang?: 'es' | 'en';
+	themeColor?: string;
 }
 
 const {
 	title = 'Trizap Software',
-	description = 'Trizap es una empresa de software que ofrece servicios de desarrollo y soluciones de software empresarial. Desde nuestras oficinas en San Francisco, impulsamos y escalamos productos, servicios y organizaciones mediante la transformación digital.',
+	description = 'Trizap desarrolla software a medida y soluciones digitales para ayudar a empresas a innovar, crecer y escalar sus operaciones.',
 	lang = 'es',
+	themeColor = '#ffffff',
 } = Astro.props;
+
+const siteUrl = Astro.site ?? new URL('https://trizap.vercel.app');
+const site = siteUrl.toString().replace(/\/$/, '');
+const canonicalUrl = new URL(Astro.url.pathname, `${site}/`).toString();
+const socialImage = new URL('/headerLigth2.png', `${site}/`).toString();
+const locale = lang === 'es' ? 'es_AR' : 'en_US';
+const structuredData = {
+	'@context': 'https://schema.org',
+	'@graph': [
+		{
+			'@type': 'Organization',
+			'@id': `${site}#organization`,
+			name: 'Trizap',
+			url: site,
+			logo: socialImage,
+		},
+		{
+			'@type': 'WebSite',
+			'@id': `${site}#website`,
+			url: site,
+			name: 'Trizap Software',
+			publisher: { '@id': `${site}#organization` },
+		},
+		{
+			'@type': 'WebPage',
+			'@id': `${canonicalUrl}#webpage`,
+			url: canonicalUrl,
+			name: title,
+			description,
+			inLanguage: locale,
+			isPartOf: { '@id': `${site}#website` },
+		},
+	],
+};
 ---
 
 <!doctype html>
@@ -23,8 +59,27 @@ const {
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="description" content={description} />
-		<meta name="theme-color" content="#ffffff" />
-		<link rel="icon" type="image/png" href="/trizap.png" />
+		<meta name="theme-color" content={themeColor} />
+		<link rel="canonical" href={canonicalUrl} />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Trizap Software" />
+		<meta property="og:locale" content={locale} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:image" content={socialImage} />
+		<meta property="og:image:type" content="image/png" />
+		<meta property="og:image:alt" content="Trizap Software" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={socialImage} />
+		<meta name="twitter:image:alt" content="Trizap Software" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/trizap.png" />
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/trizap.png" />
+		<link rel="manifest" href="/site.webmanifest" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
@@ -43,6 +98,7 @@ const {
 		</script>
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
 		<ClientRouter />
 	</head>
 	<body>

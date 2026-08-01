@@ -1,0 +1,17 @@
+{
+  "name": "Trizap Software",
+  "short_name": "Trizap",
+  "description": "Software a medida y soluciones digitales para empresas.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/trizap.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
