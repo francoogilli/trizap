@@ -3,9 +3,9 @@ import Box5 from 'reicon-react/icons/Box5';
 import ArrowRight5 from 'reicon-react/icons/ArrowRight5';
 
 const products = [
-	{ name: 'Fidel', description: 'Tecnología para construir relaciones que perduran.', hoverBackground: '/fidel-hover-bg.png' },
-	{ name: 'Octus', description: 'Soluciones digitales para organizaciones en movimiento.', hoverBackground: '/octus-hover-bg.png' },
-	{ name: 'Sanabit', description: 'Innovación para una vida más saludable.', hoverBackground: '/sanabit-hover-bg.png' },
+	{ name: 'Fidel', description: 'Tecnología para construir relaciones que perduran.', hoverBackground: '/fidel-hover-bg2.png' },
+	{ name: 'Octus', description: 'Soluciones digitales para organizaciones en movimiento.', hoverBackground: '/octus-hover-bg2.png' },
+	{ name: 'Sanabit', description: 'Innovación para una vida más saludable.', hoverBackground: '/sanabit-hover-bg2.png' },
 ];
 
 const hoverProducts = ['Fidel', 'Octus', 'Sanabit'];
@@ -23,17 +23,15 @@ const hoverProducts = ['Fidel', 'Octus', 'Sanabit'];
 
 		<div class="grid gap-2 sm:grid-cols-3">
 			{products.map((product) => (
-				<a href="#contact" data-product-card class="group relative flex min-h-60 flex-col items-center justify-center overflow-hidden rounded-3xl border border-black/12 bg-white px-6 py-8 text-center no-underline transition-colors duration-300 hover:border-black/30 hover:bg-neutral-50 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--blue) motion-reduce:transition-none sm:min-h-64">
+				<a href="#contact" data-product-card class="group relative flex aspect-1066/1475 flex-col items-center justify-center overflow-hidden rounded-3xl border border-black/12 bg-white px-6 py-8 text-center no-underline transition-colors duration-300 hover:border-transparent hover:bg-neutral-50 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--blue) motion-reduce:transition-none">
 					{hoverProducts.includes(product.name) && (
 						<>
 							<span data-product-background class="pointer-events-none absolute inset-0 z-0 scale-100 bg-cover bg-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 motion-reduce:transition-none" style={`background-image: url('${product.hoverBackground}')`} aria-hidden="true"></span>
-							<span data-product-overlay class="pointer-events-none absolute inset-0 z-0 bg-[#23364882] opacity-0 transition-opacity duration-300 group-hover:opacity-100 motion-reduce:transition-none" aria-hidden="true"></span>
 						</>
 					)}
 					{hoverProducts.includes(product.name) ? (
 						<span data-product-brand class="relative z-10 block h-10 w-44 sm:h-12 sm:w-48">
-							<img data-product-logo src={`/${product.name.toLowerCase()}.png`} alt={product.name} class="absolute inset-0 h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-0 motion-reduce:transition-none" width="953" height="943" loading="lazy" decoding="async" />
-							<img data-product-logo-hover src={`/${product.name.toLowerCase()}w.png`} alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100 motion-reduce:transition-none" width="953" height="943" loading="lazy" decoding="async" />
+							<img data-product-logo src={`/${product.name.toLowerCase()}.png`} alt={product.name} class="absolute inset-0 h-full w-full object-cover" width="953" height="943" loading="lazy" decoding="async" />
 						</span>
 					) : (
 						<span class="text-3xl font-semibold tracking-[-0.06em] text-neutral-900 sm:text-4xl">{product.name}</span>
@@ -90,13 +88,11 @@ const hoverProducts = ['Fidel', 'Octus', 'Sanabit'];
 
 			cards.forEach((card) => {
 				const background = card.querySelector<HTMLElement>('[data-product-background]');
-				const overlay = card.querySelector<HTMLElement>('[data-product-overlay]');
 				const logo = card.querySelector<HTMLElement>('[data-product-logo]');
-				const hoverLogo = card.querySelector<HTMLElement>('[data-product-logo-hover]');
 				const cta = card.querySelector<HTMLElement>('[data-product-cta]');
 
-				if (background || overlay || hoverLogo) {
-					const hoverElements = [background, overlay, hoverLogo].filter((element): element is HTMLElement => Boolean(element));
+				if (background) {
+					const hoverElements = [background];
 					gsap.set(hoverElements, { autoAlpha: 0 });
 				}
 
@@ -107,7 +103,7 @@ const hoverProducts = ['Fidel', 'Octus', 'Sanabit'];
 						y: isActive ? -6 : 0,
 						scale: isActive ? 1.01 : 1,
 						backgroundColor: isActive ? '#f5f5f5' : '#ffffff',
-						borderColor: isActive ? 'rgba(0, 0, 0, 0.3)' : 'rgba(0, 0, 0, 0.12)',
+						borderColor: isActive ? 'transparent' : 'rgba(0, 0, 0, 0.12)',
 						duration,
 						ease: 'power3.out',
 						overwrite: 'auto',
@@ -116,14 +112,8 @@ const hoverProducts = ['Fidel', 'Octus', 'Sanabit'];
 					if (background) {
 						gsap.to(background, { autoAlpha: isActive ? 1 : 0, scale: isActive ? 1.06 : 1, duration: 0.6, ease: 'power2.out', overwrite: 'auto' });
 					}
-					if (overlay) {
-						gsap.to(overlay, { autoAlpha: isActive ? 1 : 0, duration: 0.4, ease: 'power2.out', overwrite: 'auto' });
-					}
 					if (logo) {
-						gsap.to(logo, { autoAlpha: isActive ? 0 : 1, y: isActive ? -2 : 0, duration, ease: 'power2.out', overwrite: 'auto' });
-					}
-					if (hoverLogo) {
-						gsap.to(hoverLogo, { autoAlpha: isActive ? 1 : 0, y: isActive ? -2 : 0, duration, ease: 'power2.out', overwrite: 'auto' });
+						gsap.to(logo, { y: isActive ? -2 : 0, duration, ease: 'power2.out', overwrite: 'auto' });
 					}
 					if (cta) {
 						gsap.to(cta, { x: isActive ? 4 : 0, color: isActive ? '#ffffff' : '#0a0a0a', duration, ease: 'power2.out', overwrite: 'auto' });
