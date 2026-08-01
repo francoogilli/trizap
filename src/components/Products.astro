@@ -24,8 +24,6 @@ const hoverProducts = ['Fidel', 'Octus', 'Sanabit'];
 		<div class="grid gap-2 sm:grid-cols-3">
 			{products.map((product) => (
 				<a href="#contact" data-product-card class="group relative flex min-h-60 flex-col items-center justify-center overflow-hidden rounded-3xl border border-black/12 bg-white px-6 py-8 text-center no-underline transition-colors duration-300 hover:border-black/30 hover:bg-neutral-50 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--blue) motion-reduce:transition-none sm:min-h-64">
-					<span data-product-accent class="absolute inset-x-6 top-0 z-10 h-px origin-left scale-x-0 bg-(--blue) transition-transform duration-300 group-hover:scale-x-100 motion-reduce:transition-none" aria-hidden="true"></span>
-					<span class="absolute right-7 top-7 z-10 h-1.5 w-1.5 rounded-full bg-(--blue) opacity-40 transition-opacity duration-300 group-hover:opacity-100 motion-reduce:transition-none" aria-hidden="true"></span>
 					{hoverProducts.includes(product.name) && (
 						<>
 							<span data-product-background class="pointer-events-none absolute inset-0 z-0 scale-100 bg-cover bg-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 motion-reduce:transition-none" style={`background-image: url('${product.hoverBackground}')`} aria-hidden="true"></span>
@@ -96,7 +94,6 @@ const hoverProducts = ['Fidel', 'Octus', 'Sanabit'];
 				const logo = card.querySelector<HTMLElement>('[data-product-logo]');
 				const hoverLogo = card.querySelector<HTMLElement>('[data-product-logo-hover]');
 				const cta = card.querySelector<HTMLElement>('[data-product-cta]');
-				const accent = card.querySelector<HTMLElement>('[data-product-accent]');
 
 				if (background || overlay || hoverLogo) {
 					const hoverElements = [background, overlay, hoverLogo].filter((element): element is HTMLElement => Boolean(element));
@@ -130,9 +127,6 @@ const hoverProducts = ['Fidel', 'Octus', 'Sanabit'];
 					}
 					if (cta) {
 						gsap.to(cta, { x: isActive ? 4 : 0, color: isActive ? '#ffffff' : '#0a0a0a', duration, ease: 'power2.out', overwrite: 'auto' });
-					}
-					if (accent) {
-						gsap.to(accent, { scaleX: isActive ? 1 : 0, duration, ease: 'power2.out', overwrite: 'auto' });
 					}
 				};
 

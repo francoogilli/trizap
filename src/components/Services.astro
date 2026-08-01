@@ -38,7 +38,7 @@ const services = [
 
 		<div class="mt-11.5 grid grid-cols-3 gap-px overflow-hidden rounded-3xl border border-black/9 bg-black/9 max-[809px]:mt-8 max-[809px]:grid-cols-1 max-[809px]:rounded-2xl">
 			{services.map((service) => (
-				<article transition:name={service.icon === 'code' ? 'software-services-card' : service.icon === 'scrum' ? 'scrum-team-card' : undefined} class="group relative flex min-h-84 flex-col bg-white p-7 transition-colors duration-200 hover:bg-neutral-50 motion-reduce:transition-none sm:p-10">
+				<article transition:name={service.icon === 'code' ? 'software-services-card' : service.icon === 'scrum' ? 'scrum-team-card' : service.icon === 'people' ? 'staff-augmentation-card' : undefined} class="group relative flex min-h-84 flex-col bg-white p-7 transition-colors duration-200 hover:bg-neutral-50 motion-reduce:transition-none sm:p-10">
 					{service.icon === 'code' && (
 						<a href="/software-services/" class="absolute inset-0 z-20 rounded-3xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--blue)" aria-label="View Software Services" data-i18n-aria-label-es="Ver Servicios de Software" data-i18n-aria-label-en="View Software Services">
 							<span class="sr-only" data-i18n-es="Ver detalles de Servicios de Software" data-i18n-en="View Software Services details">View Software Services details</span>
@@ -47,6 +47,11 @@ const services = [
 					{service.icon === 'scrum' && (
 						<a href="/scrum-team/" class="absolute inset-0 z-20 rounded-3xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--blue)" aria-label="View Scrum Team" data-i18n-aria-label-es="Ver Equipo Scrum" data-i18n-aria-label-en="View Scrum Team">
 							<span class="sr-only" data-i18n-es="Ver detalles del Equipo Scrum" data-i18n-en="View Scrum Team details">View Scrum Team details</span>
+						</a>
+					)}
+					{service.icon === 'people' && (
+						<a href="/staff-augmentation/" class="absolute inset-0 z-20 rounded-3xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--blue)" aria-label="View Staff Augmentation" data-i18n-aria-label-es="Ver Aumento del Personal" data-i18n-aria-label-en="View Staff Augmentation">
+							<span class="sr-only" data-i18n-es="Ver detalles de Aumento del Personal" data-i18n-en="View Staff Augmentation details">View Staff Augmentation details</span>
 						</a>
 					)}
 					<span class="absolute inset-x-8 top-0 h-px origin-left scale-x-0 bg-(--blue) transition-transform duration-300 group-hover:scale-x-100 motion-reduce:transition-none" aria-hidden="true"></span>

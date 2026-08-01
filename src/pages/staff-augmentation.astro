@@ -1,0 +1,165 @@
+---
+import People from 'reicon-react/icons/People';
+import ArrowLeft5 from 'reicon-react/icons/ArrowLeft5';
+import { slide } from 'astro:transitions';
+import Layout from '../layouts/Layout.astro';
+
+const benefits = [
+	{
+		en: 'No investment in infrastructure.',
+		es: 'Sin inversión en infraestructura.',
+	},
+	{
+		en: 'Reduce the time spent on hiring.',
+		es: 'Reduce el tiempo dedicado a la contratación.',
+	},
+	{
+		en: 'Eliminates the additional costs of having in-house employees.',
+		es: 'Elimina los costos adicionales de tener empleados internos.',
+	},
+	{
+		en: 'No geographical limitations.',
+		es: 'No está sujeto a limitaciones geográficas.',
+	},
+];
+
+const processSteps = [
+	{
+		number: '01',
+		enTitle: 'Requirement gathering',
+		esTitle: 'Levantamiento de requerimientos',
+		enText: 'We gather the requirements, objectives, and profile needed for the project.',
+		esText: 'Relevamos los requerimientos, objetivos y perfil que necesita el proyecto.',
+	},
+	{
+		number: '02',
+		enTitle: 'Interview process',
+		esTitle: 'Proceso de entrevistas',
+		enText: 'We coordinate interviews so you can evaluate the candidates that best fit your needs.',
+		esText: 'Coordinamos las entrevistas para que evalúes los candidatos que mejor se ajustan a tus necesidades.',
+	},
+	{
+		number: '03',
+		enTitle: 'Hire resources',
+		esTitle: 'Contratación de recursos',
+		enText: 'We hire the selected resources and prepare their integration into your project.',
+		esText: 'Contratamos los recursos seleccionados y preparamos su integración al proyecto.',
+	},
+	{
+		number: '04',
+		enTitle: 'Working & continuous support',
+		esTitle: 'Trabajo y soporte continuo',
+		enText: 'We work alongside your team and provide continuous support throughout the engagement.',
+		esText: 'Trabajamos junto a tu equipo y brindamos soporte continuo durante toda la colaboración.',
+	},
+];
+---
+
+<Layout
+	title="Aumento del Personal | Trizap Software"
+	description="Flexible IT staff augmentation services for desktop, mobile, web, testing, and systems administration projects."
+	lang="es"
+>
+	<main class="bg-white text-neutral-900" aria-labelledby="staff-title">
+		<section transition:name="staff-augmentation-card" class="bg-white px-6 pb-24 pt-28 sm:px-9 sm:pb-30 sm:pt-28" aria-labelledby="staff-title">
+			<div class="mx-auto w-full max-w-300">
+				<a href="/#servicio" class="mb-10 inline-flex items-center gap-2 text-sm font-medium no-underline transition-transform duration-200 hover:-translate-x-1 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--blue) motion-reduce:transition-none" aria-label="Volver a servicios" data-i18n-aria-label-es="Volver a servicios" data-i18n-aria-label-en="Back to services">
+					<ArrowLeft5 aria-hidden="true" size={18} weight="Outline" color="currentColor" />
+					<span data-i18n-es="Volver a servicios" data-i18n-en="Back to services">Volver a servicios</span>
+				</a>
+				<div class="flex flex-col items-center pb-9 text-center max-[809px]:pb-7.5">
+					<People className="mb-3.5 text-(--blue)" aria-hidden="true" size={22} weight="Filled" color="var(--blue)" />
+					<h1 id="staff-title" class="m-0 text-[50px] font-semibold leading-[0.94] tracking-[-0.075em] max-[640px]:text-5xl" data-i18n-es="Aumento del Personal" data-i18n-en="Staff Augmentation">Aumento del Personal</h1>
+					<p class="mt-4.25 max-w-220 text-[17px] font-normal leading-normal tracking-[-0.03em] text-(--muted) max-[809px]:max-w-97.5 max-[809px]:text-base" data-i18n-es="Los servicios de nuestra empresa de aumento de personal de IT están disponibles para todo tipo de proyecto y tecnología, sin importar cuán simple o complejo sea su proyecto: desde la creación de prototipos hasta el desarrollo a gran escala de aplicaciones de escritorio, móviles o web, pruebas y administración de sistemas." data-i18n-en="Our IT staff augmentation services are available for projects of every type and technology, no matter how simple or complex they are—from prototyping to large-scale desktop, mobile, or web application development, testing, and systems administration.">
+						Los servicios de nuestra empresa de aumento de personal de IT están disponibles para todo tipo de proyecto y tecnología, sin importar cuán simple o complejo sea su proyecto: desde la creación de prototipos hasta el desarrollo a gran escala de aplicaciones de escritorio, móviles o web, pruebas y administración de sistemas.
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<section transition:name="service-approach" transition:animate={slide({ duration: '0.55s', delay: '0.08s', easing: 'cubic-bezier(0.22, 1, 0.36, 1)' })} class="bg-white px-6 pb-30 pt-4 sm:px-9 sm:pt-0" aria-labelledby="staff-approach-title">
+			<div class="mx-auto grid w-full max-w-300 gap-16 lg:grid-cols-[minmax(0,1.1fr)_minmax(20rem,0.9fr)] lg:gap-24">
+				<div>
+					<p class="mb-8 text-[40px] font-semibold tracking-[-0.07em]">
+						<span data-i18n-es="Más capacidad," data-i18n-en="More capacity,">Más capacidad,</span>{' '}
+						<span class="hero-serif bg-linear-to-r from-blue-500 to-blue-300 bg-clip-text text-[44px] font-normal text-transparent" data-i18n-es="cuando la necesitás" data-i18n-en="when you need it">cuando la necesitás</span>
+					</p>
+					<div class="max-w-165 space-y-5 text-[17px] leading-normal tracking-[-0.03em] text-(--muted) max-[640px]:text-base">
+						<p data-i18n-es="Sumá las capacidades que tu proyecto necesita, durante el tiempo que las necesita." data-i18n-en="Add the capabilities your project needs for as long as you need them.">
+							Sumá las capacidades que tu proyecto necesita, durante el tiempo que las necesita.
+						</p>
+						<p data-i18n-es="Integramos perfiles especializados a tu equipo para acelerar la entrega y mantener el foco en los objetivos del negocio." data-i18n-en="We integrate specialized professionals into your team to accelerate delivery and keep the focus on business goals.">
+							Integramos perfiles especializados a tu equipo para acelerar la entrega y mantener el foco en los objetivos del negocio.
+						</p>
+					</div>
+				</div>
+
+				<div class="flex flex-col justify-end">
+					<div class="rounded-3xl border border-black/9 bg-neutral-50 p-7 sm:p-10">
+						<p class="m-0 text-4xl font-extrabold tracking-tighter text-neutral-900">IT STAFF</p>
+						<p class="mt-3 max-w-85 text-lg leading-snug tracking-[-0.035em] text-neutral-900" data-i18n-es="Talento especializado que se integra a tu equipo y a tus objetivos." data-i18n-en="Specialized talent that integrates with your team and your goals.">
+							Talento especializado que se integra a tu equipo y a tus objetivos.
+						</p>
+						<div class="mt-8 flex flex-wrap gap-2">
+							{['Desktop', 'Mobile', 'Web', 'QA', 'Systems'].map((service) => (
+								<span class="rounded-full border border-black/9 bg-white px-3 py-1.5 text-xs font-medium text-(--muted)">{service}</span>
+							))}
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="bg-white px-6 pb-30 pt-24 sm:px-9 sm:pt-28" aria-labelledby="staff-benefits-title">
+			<div class="mx-auto w-full max-w-300">
+				<div class="flex flex-col items-center pb-9 text-center max-[809px]:pb-7.5">
+					<People className="mb-3.5 text-(--blue)" aria-hidden="true" size={22} weight="Filled" color="currentColor" />
+					<h2 id="staff-benefits-title" class="m-0 text-[50px] font-semibold leading-[0.94] tracking-[-0.075em] max-[640px]:text-5xl" data-i18n-es="Beneficios" data-i18n-en="Benefits">Beneficios</h2>
+					<p class="mt-4.25 max-w-117.5 text-[17px] font-normal leading-normal tracking-[-0.03em] text-(--muted) max-[809px]:max-w-97.5 max-[809px]:text-base" data-i18n-es="Una forma flexible de sumar experiencia y capacidad a tu proyecto." data-i18n-en="A flexible way to add experience and capacity to your project.">
+						Una forma flexible de sumar experiencia y capacidad a tu proyecto.
+					</p>
+				</div>
+
+				<div class="grid gap-px overflow-hidden rounded-3xl border border-black/9 bg-black/9 sm:grid-cols-2 lg:grid-cols-4 max-[809px]:rounded-2xl">
+					{benefits.map((benefit) => (
+						<article class="group flex min-h-42 items-start gap-4 bg-white p-7 transition-colors duration-200 hover:bg-neutral-50 motion-reduce:transition-none sm:p-8">
+							<span class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-(--blue) text-white transition-transform duration-200 group-hover:scale-105 motion-reduce:transition-none" aria-hidden="true">
+								<svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.25">
+									<path d="m5 12.5 4.5 4.5L19 7.5" />
+								</svg>
+							</span>
+							<p class="m-0 pt-1 text-lg leading-snug tracking-[-0.035em] text-neutral-900" data-i18n-es={benefit.es} data-i18n-en={benefit.en}>{benefit.es}</p>
+						</article>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<section class="bg-white px-6 pb-30 pt-4 sm:px-9 sm:pt-0" aria-labelledby="staff-process-title">
+			<div class="mx-auto w-full max-w-300 border-t border-black/9 pt-24 sm:pt-30">
+				<div class="flex flex-col items-center pb-9 text-center max-[809px]:pb-7.5">
+					<People className="mb-3.5 text-(--blue)" aria-hidden="true" size={22} weight="Filled" color="currentColor" />
+					<h2 id="staff-process-title" class="m-0 text-[50px] font-semibold leading-[0.94] tracking-[-0.075em] max-[640px]:text-5xl" data-i18n-es="Proceso" data-i18n-en="Process">Proceso</h2>
+					<p class="mt-4.25 max-w-117.5 text-[17px] font-normal leading-normal tracking-[-0.03em] text-(--muted) max-[809px]:max-w-97.5 max-[809px]:text-base" data-i18n-es="Un proceso simple para sumar el talento adecuado en el momento indicado." data-i18n-en="A simple process to add the right talent at the right time.">
+						Un proceso simple para sumar el talento adecuado en el momento indicado.
+					</p>
+				</div>
+
+				<div class="grid gap-px overflow-hidden rounded-3xl border border-black/9 bg-black/9 sm:grid-cols-2 lg:grid-cols-4 max-[809px]:rounded-2xl">
+					{processSteps.map((step) => (
+						<article class="group relative bg-neutral-50 p-7 transition-colors duration-200 hover:bg-white motion-reduce:transition-none sm:p-8">
+							<span class="absolute inset-x-8 top-0 h-px origin-left scale-x-0 bg-(--blue) transition-transform duration-300 group-hover:scale-x-100 motion-reduce:transition-none" aria-hidden="true"></span>
+							<span class="text-sm font-semibold tracking-[-0.02em] text-(--blue)">{step.number}</span>
+							<h3 class="mt-9 text-2xl font-semibold tracking-tighter text-neutral-900" data-i18n-es={step.esTitle} data-i18n-en={step.enTitle}>{step.esTitle}</h3>
+							<p class="mt-4 text-[15px] leading-relaxed tracking-[-0.015em] text-(--muted)" data-i18n-es={step.esText} data-i18n-en={step.enText}>{step.esText}</p>
+						</article>
+					))}
+				</div>
+
+				<div class="flex justify-center pt-10">
+					<a href="/#contact" class="rounded-xl bg-neutral-900 px-8 py-3.5 text-[0.95rem] font-semibold text-white no-underline transition-all duration-200 hover:-translate-y-0.5 hover:bg-neutral-700 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900 motion-reduce:transition-none" data-i18n-es="Hablemos de tu equipo" data-i18n-en="Let's talk about your team">Hablemos de tu equipo</a>
+				</div>
+			</div>
+		</section>
+	</main>
+</Layout>
