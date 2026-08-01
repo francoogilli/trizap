@@ -10,22 +10,24 @@ export const LANGUAGE_CHANGE_EVENT = 'trizap:language-change';
 export const LANGUAGE_STORAGE_KEY = 'trizap-language';
 
 const navItems = [
-	{ href: '/#top' },
-	{ href: '/#servicio' },
-	{ href: '/#clientes' },
-	{ href: '/#products' },
-	{ href: 'mailto:hello@alwayzz.studio' },
-];
+	{ href: '/#top', section: 'top' },
+	{ href: '/#servicio', section: 'servicio' },
+	{ href: '/#about', section: 'about' },
+	{ href: '/#products', section: 'products' },
+	{ href: '/#contact', section: 'contact' },
+] as const;
+
+type NavSection = (typeof navItems)[number]['section'];
 
 const translations = {
 	es: {
-		nav: ['Inicio', 'Servicio', 'Clientes', 'Productos', 'Contacto'],
+		nav: ['Inicio', 'Servicio', 'Sobre Trizap', 'Productos', 'Contacto'],
 		brandLabel: 'Inicio de Trizap',
 		languageLabel: 'Seleccionar idioma',
 		languageNames: { es: 'Español', en: 'Inglés' },
 	},
 	en: {
-		nav: ['Home', 'Services', 'Clients', 'Products', 'Contact'],
+		nav: ['Home', 'Services', 'About Trizap', 'Products', 'Contact'],
 		brandLabel: 'Trizap home',
 		languageLabel: 'Select language',
 		languageNames: { es: 'Spanish', en: 'English' },
@@ -121,6 +123,7 @@ type Props = {
 export default function Navbar({ defaultLanguage = 'es' }: Props) {
 	const [language, setLanguage] = useState<Language>(defaultLanguage);
 	const [isScrolled, setIsScrolled] = useState(false);
+	const [activeSection, setActiveSection] = useState<NavSection>('top');
 	const text = translations[language];
 
 	const readStoredLanguage = () => {
@@ -145,6 +148,32 @@ export default function Navbar({ defaultLanguage = 'es' }: Props) {
 		updateScrollState();
 		window.addEventListener('scroll', updateScrollState, { passive: true });
 		return () => window.removeEventListener('scroll', updateScrollState);
+	}, []);
+
+	useEffect(() => {
+		const updateActiveSection = () => {
+			const activationLine = 120;
+			const visibleSections = navItems
+				.map(({ section }) => ({ section, top: document.getElementById(section)?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY }))
+				.filter(({ top }) => top <= activationLine)
+				.sort((first, second) => second.top - first.top);
+
+			setActiveSection(visibleSections[0]?.section ?? 'top');
+		};
+		let frame: number | null = null;
+		const handleScroll = () => {
+			if (frame !== null) cancelAnimationFrame(frame);
+			frame = requestAnimationFrame(updateActiveSection);
+		};
+
+		updateActiveSection();
+		window.addEventListener('scroll', handleScroll, { passive: true });
+		window.addEventListener('resize', handleScroll);
+		return () => {
+			if (frame !== null) cancelAnimationFrame(frame);
+			window.removeEventListener('scroll', handleScroll);
+			window.removeEventListener('resize', handleScroll);
+		};
 	}, []);
 
 	useEffect(() => {
@@ -174,7 +203,7 @@ export default function Navbar({ defaultLanguage = 'es' }: Props) {
 				<Brand label={text.brandLabel} />
 				<div className="header-links">
 					{navItems.map((link, index) => (
-						<a className="header-link" href={link.href} aria-current={index === 0 ? 'page' : undefined} key={text.nav[index]}>
+						<a className="header-link" href={link.href} aria-current={activeSection === link.section ? 'page' : undefined} onClick={() => setActiveSection(link.section)} key={text.nav[index]}>
 							{text.nav[index]}
 						</a>
 					))}
