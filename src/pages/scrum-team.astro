@@ -1,6 +1,7 @@
 ---
 import ChartBarTrendUp from 'reicon-react/icons/ChartBarTrendUp';
 import ArrowLeft5 from 'reicon-react/icons/ArrowLeft5';
+import { slide } from 'astro:transitions';
 import Layout from '../layouts/Layout.astro';
 
 const benefits = [
@@ -63,7 +64,7 @@ const methodPillars = [
 			</div>
 		</section>
 
-		<section class="bg-white px-6 pb-30 pt-4 sm:px-9 sm:pt-0" aria-labelledby="scrum-approach-title">
+		<section transition:name="service-approach" transition:animate={slide({ duration: '0.55s', delay: '0.08s', easing: 'cubic-bezier(0.22, 1, 0.36, 1)' })} class="bg-white px-6 pb-30 pt-4 sm:px-9 sm:pt-0" aria-labelledby="scrum-approach-title">
 			<div class="mx-auto grid w-full max-w-300 gap-16 lg:grid-cols-[minmax(0,1.1fr)_minmax(20rem,0.9fr)] lg:gap-24">
 				<div>
 					<p class="mb-8 text-[40px] font-semibold tracking-[-0.07em]">
