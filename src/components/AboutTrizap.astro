@@ -1,15 +1,19 @@
 ---
 import ArrowRight from 'reicon-react/icons/ArrowRight';
 import Building from 'reicon-react/icons/Building';
+import Eye from 'reicon-react/icons/Eye';
+import Target from 'reicon-react/icons/Target';
 
 const pillars = [
 	{
+		icon: 'mission',
 		label: 'Misión',
 		enLabel: 'Mission',
 		text: 'Promover valores y empoderar a las personas fortaleciendo relaciones humanas a través de la tecnología.',
 		enText: 'Promote values and empower people by strengthening human relationships through technology.',
 	},
 	{
+		icon: 'vision',
 		label: 'Visión',
 		enLabel: 'Vision',
 		text: 'Ser socios estratégicos de nuestros clientes alrededor del mundo ayudando a alcanzar el máximo potencial de cada uno.',
@@ -61,7 +65,12 @@ const pillars = [
 		<div class="mt-20 grid gap-px overflow-hidden rounded-3xl border border-black/9 bg-black/9 md:grid-cols-2 sm:mt-28">
 			{pillars.map((pillar) => (
 				<article class="bg-neutral-50 p-7 sm:p-10">
-					<p class="mb-8 text-base font-semibold uppercase tracking-widest text-(--blue)" data-i18n-es={pillar.label} data-i18n-en={pillar.enLabel}>{pillar.label}</p>
+					<div class="mb-8 flex items-center gap-3">
+						<span class="flex h-5 w-5 shrink-0 items-center justify-center text-(--blue)" aria-hidden="true">
+							{pillar.icon === 'mission' ? <Target size={18} weight="Outline" color="currentColor" /> : <Eye size={18} weight="Outline" color="currentColor" />}
+						</span>
+						<p class="m-0 text-base font-semibold uppercase tracking-widest text-(--blue)" data-i18n-es={pillar.label} data-i18n-en={pillar.enLabel}>{pillar.label}</p>
+					</div>
 					<p class="m-0 max-w-120 text-lg leading-snug tracking-[-0.035em] text-neutral-900 sm:text-xl" data-i18n-es={pillar.text} data-i18n-en={pillar.enText}>{pillar.text}</p>
 				</article>
 			))}
