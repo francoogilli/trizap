@@ -1,0 +1,162 @@
+---
+import ArrowLeft5 from 'reicon-react/icons/ArrowLeft5';
+import Building from 'reicon-react/icons/Building';
+import BookmarkMinus from 'reicon-react/icons/BookmarkMinus';
+import Users3 from 'reicon-react/icons/Users3';
+import Layout from '../layouts/Layout.astro';
+
+const team = [
+	{
+		name: 'Jose Luis Bertoli',
+		photo: '/Jose.jpg',
+		role: 'Business and Product Development',
+		esRole: 'Desarrollo de negocios y productos',
+		description: 'We are ready to partner closely with customers to quickly and successfully define, build and develop high-performance product solutions, adapting to business needs and processes.',
+		esDescription: 'Estamos listos para asociarnos con nuestros clientes para definir, construir y desarrollar rápidamente soluciones de alto rendimiento, adaptándonos a sus necesidades y procesos de negocio.',
+	},
+	{
+		name: 'Nicolás Stobbia',
+		photo: '/Nico.jpg',
+		role: 'Project Manager and Scrum Master',
+		esRole: 'Project Manager y Scrum Master',
+		description: 'We are your ally leading the project and the team, understanding the domain of the business, proposing processes that add value to the product.',
+		esDescription: 'Somos tu aliado para liderar el proyecto y el equipo, entendiendo el negocio y proponiendo procesos que agreguen valor al producto.',
+	},
+	{
+		name: 'Mauro Luque',
+		photo: '/Mauro.jpg',
+		role: 'Technical Leader',
+		esRole: 'Líder técnico',
+		description: 'We aim at the latest technologies to stay at the forefront of development, maintaining excellence in performance and safety. We push our own limits to go further and further.',
+		esDescription: 'Apuntamos a las últimas tecnologías para estar a la vanguardia del desarrollo, manteniendo la excelencia en performance y seguridad. Superamos nuestros propios límites para llegar cada vez más lejos.',
+	},
+];
+
+const foundingYear = 2010;
+const yearsActive = new Date().getFullYear() - foundingYear;
+
+const stats = [
+	{ value: '3', label: 'Products', esLabel: 'Productos' },
+	{ value: '+40', label: 'Team', esLabel: 'Equipo' },
+	{ value: '+1000', label: 'Clients', esLabel: 'Clientes' },
+	{ value: String(yearsActive), label: 'Years', esLabel: 'Años' },
+];
+---
+
+<Layout
+	title="About Us | Trizap Software"
+	description="Learn about Trizap's story, business team and the software products we build with our clients."
+	lang="en"
+	themeColor="#ffffff"
+>
+	<main class="bg-white text-neutral-900" aria-labelledby="about-us-title">
+		<section transition:name="about-us-card" class="bg-white px-6 pb-24 pt-28 sm:px-9 sm:pb-30 sm:pt-28" aria-labelledby="about-us-title">
+			<div class="mx-auto w-full max-w-300">
+				<a href="/#about" class="mb-10 inline-flex items-center gap-2 text-sm font-medium no-underline transition-transform duration-200 hover:-translate-x-1 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--blue) motion-reduce:transition-none" aria-label="Back to About" data-i18n-aria-label-es="Volver a Sobre Trizap" data-i18n-aria-label-en="Back to About">
+					<ArrowLeft5 aria-hidden="true" size={18} weight="Outline" color="currentColor" />
+					<span data-i18n-es="Volver a Sobre Trizap" data-i18n-en="Back to About">Back to About</span>
+				</a>
+				<div class="flex flex-col items-center text-center">
+					<Building className="mb-3.5 text-(--blue)" aria-hidden="true" size={22} weight="Filled" color="var(--blue)" />
+					<h1 id="about-us-title" class="m-0 text-[50px] font-semibold leading-[0.94] tracking-[-0.075em] max-[640px]:text-5xl" data-i18n-es="Sobre nosotros" data-i18n-en="About Us">About Us</h1>
+					<p class="mt-4.25 max-w-200 text-[17px] font-normal leading-normal tracking-[-0.03em] text-(--muted) max-[809px]:max-w-97.5 max-[809px]:text-base" data-i18n-es="Somos una comunidad que desarrolla software y ayuda a sus clientes a avanzar en su transformación digital." data-i18n-en="We are a community that has been developing software and helping our clients move forward in their digital transformation.">
+						We are a community that has been developing software and helping our clients move forward in their digital transformation.
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="bg-white px-6 pb-30 pt-4 sm:px-9 sm:pt-0" aria-labelledby="story-title">
+			<div class="mx-auto w-full max-w-300">
+				<div class="flex flex-col items-center pb-9 text-center max-[809px]:pb-7.5">
+					<div class="mb-3.5 flex items-center gap-2.5 text-(--blue)">
+						<BookmarkMinus aria-hidden="true" size={20} weight="Filled" color="currentColor" />
+						<p class="m-0 text-base font-semibold uppercase tracking-widest" data-i18n-es="Nuestra historia" data-i18n-en="Our story">Our story</p>
+					</div>
+					<h2 id="story-title" class="m-0 w-full max-w-150 text-center text-[40px] font-semibold leading-[0.96] tracking-[-0.07em] max-[640px]:text-4xl">
+						<span data-i18n-es="De Agencia Programarte a Trizap" data-i18n-en="From Agencia Programarte to Trizap">From Agencia Programarte to</span>{' '}
+					</h2>
+				</div>
+				<div class="mx-auto grid w-full max-w-250 gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(20rem,0.85fr)] lg:items-start lg:gap-24">
+				<div class="max-w-165 space-y-5 text-[17px] leading-normal tracking-[-0.03em] text-(--muted) max-[640px]:text-base">
+					<p data-i18n-es="Somos una comunidad que desarrolla software. Nacimos en 2010 como Agencia Programarte, brindando soluciones web a nuestros clientes y ayudándolos en su transformación digital." data-i18n-en="We are a community that has been developing software. We were born in 2010 as Agencia Programarte, providing web solutions to our clients and helping them in their digital transformation.">
+						We are a community that has been developing software. We were born in 2010 as Agencia Programarte, providing web solutions to our clients and helping them in their digital transformation.
+					</p>
+					<p data-i18n-es="Creamos nuestros propios productos integrales y brindamos servicios de desarrollo de software en múltiples tecnologías, aplicando la metodología ágil Scrum. Somos los aliados tecnológicos de nuestros clientes y partners, desarrollando software de calidad." data-i18n-en="We create our own integrated products and provide software development services in multiple technologies applying agile Scrum methodology. We are the technological allies of our clients and partners developing quality software.">
+						We create our own integrated products and provide software development services in multiple technologies applying agile Scrum methodology. We are the technological allies of our clients and partners developing quality software.
+					</p>
+					<p class="pt-3 text-xl font-semibold tracking-[-0.04em] text-neutral-900" data-i18n-es="¡En 2021 nos convertimos en Trizap!" data-i18n-en="In 2021, we became Trizap!">In 2021, we became Trizap!</p>
+				</div>
+				<div class="rounded-3xl border border-black/9 bg-neutral-50 p-7 sm:p-10">
+						<div class="border-l border-black/10 pl-6 sm:pl-8">
+							<div class="relative pb-10">
+								<span class="absolute -left-7.25 top-1.5 h-3 w-3 rounded-full border-2 border-neutral-50 bg-neutral-900 sm:-left-9.25" aria-hidden="true"></span>
+								<p class="hero-serif m-0 text-4xl text-neutral-900">2010</p>
+								<p class="mt-2 text-sm text-(--muted)" data-i18n-es="Agencia Programarte · El comienzo" data-i18n-en="Agencia Programarte · The beginning">Agencia Programarte · The beginning</p>
+							</div>
+							<div class="relative">
+								<span class="absolute -left-7.75 top-1.5 h-4 w-4 rounded-full border-4 border-neutral-50 bg-(--blue) sm:-left-9.75" aria-hidden="true"></span>
+								<p class="hero-serif m-0 bg-linear-to-r from-blue-500 to-cyan-100 bg-clip-text text-5xl text-transparent">2021</p>
+								<p class="mt-2 text-sm text-(--muted)" data-i18n-es="Nos transformamos en Trizap" data-i18n-en="We became Trizap">We became Trizap</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="bg-white px-6 pb-30 pt-4 sm:px-9 sm:pt-0" aria-labelledby="team-title">
+			<div class="mx-auto w-full max-w-300">
+				<div class="flex flex-col items-center pb-9 text-center max-[809px]:pb-7.5">
+					<div class="mb-3.5 flex items-center gap-2.5 text-(--blue)">
+						<Users3 aria-hidden="true" size={20} weight="Filled" color="currentColor" />
+						<p class="m-0 text-base font-semibold uppercase tracking-widest" data-i18n-es="Las personas detrás" data-i18n-en="The People Behind">The People Behind</p>
+					</div>
+					<h2 id="team-title" class="m-0 text-[50px] font-semibold leading-[0.94] tracking-[-0.075em] max-[640px]:text-5xl" data-i18n-es="Nuestro equipo de negocios" data-i18n-en="Our Business Team">Our Business Team</h2>
+					<p class="mt-4.25 max-w-117.5 text-[17px] font-normal leading-normal tracking-[-0.03em] text-(--muted) max-[809px]:max-w-97.5 max-[809px]:text-base" data-i18n-es="Personas que combinan visión de negocio, liderazgo de proyectos y excelencia técnica." data-i18n-en="People combining business vision, project leadership and technical excellence.">
+						People combining business vision, project leadership and technical excellence.
+					</p>
+				</div>
+
+				<div class="grid gap-px overflow-hidden rounded-3xl border border-black/9 bg-black/9 max-[809px]:rounded-2xl lg:grid-cols-3">
+					{team.map((member) => (
+						<article class="group relative flex min-h-84 flex-col bg-white p-7 transition-colors duration-200 hover:bg-neutral-50 motion-reduce:transition-none sm:p-10">
+							<span class="absolute inset-x-8 top-0 h-px origin-left scale-x-0 bg-(--blue) transition-transform duration-300 group-hover:scale-x-100 motion-reduce:transition-none" aria-hidden="true"></span>
+							<div class="flex items-start justify-between gap-4">
+								<img src={member.photo} alt={member.name} class="h-24 w-24 rounded-2xl border border-black/9 object-cover object-top" width="512" height="512" loading="lazy" decoding="async" />
+								<span class="pt-2 text-xs font-medium uppercase tracking-widest text-(--muted)" data-i18n-es="Equipo" data-i18n-en="Team">Team</span>
+							</div>
+							<h3 class="mt-9 text-2xl font-semibold leading-[1.05] tracking-[-0.055em] text-neutral-900 sm:text-3xl">{member.name}</h3>
+							<p class="mt-3 text-sm font-semibold text-(--blue)" data-i18n-es={member.esRole} data-i18n-en={member.role}>{member.role}</p>
+							<p class="mt-5 text-[15px] leading-relaxed tracking-[-0.015em] text-(--muted)" data-i18n-es={member.esDescription} data-i18n-en={member.description}>{member.description}</p>
+						</article>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<section class="bg-white px-6 pb-30 pt-4 sm:px-9 sm:pt-0" aria-labelledby="impact-title">
+			<div class="mx-auto w-full max-w-300 border-t border-black/9 pt-24 sm:pt-30">
+				<div class="flex flex-col items-center pb-9 text-center max-[809px]:pb-7.5">
+					<div class="mb-3.5 flex items-center gap-2.5 text-(--blue)">
+						<Building aria-hidden="true" size={20} weight="Filled" color="currentColor" />
+						<p class="m-0 text-base font-semibold uppercase tracking-widest" data-i18n-es="Trabajo que perdura" data-i18n-en="Work that lasts">Work that lasts</p>
+					</div>
+					<h2 id="impact-title" class="m-0 text-[50px] font-semibold leading-[0.94] tracking-[-0.075em] max-[640px]:text-5xl" data-i18n-es="Hacer lo correcto, en el momento correcto." data-i18n-en="Doing the right thing, at the right time.">Doing the right thing, at the right time.</h2>
+					<p class="mt-4.25 max-w-117.5 text-[17px] font-normal leading-normal tracking-[-0.03em] text-(--muted) max-[809px]:max-w-97.5 max-[809px]:text-base" data-i18n-es="El trabajo que hacemos juntos se refleja en productos, equipos y relaciones que perduran." data-i18n-en="The work we do together shows up in products, teams and relationships that last.">
+						The work we do together shows up in products, teams and relationships that last.
+					</p>
+				</div>
+
+				<div class="grid gap-px overflow-hidden rounded-3xl border border-black/9 bg-black/9 sm:grid-cols-4 max-[809px]:rounded-2xl">
+					{stats.map((stat) => (
+						<article class="bg-neutral-50 p-7 transition-colors duration-200 hover:bg-white motion-reduce:transition-none sm:p-8">
+							<p class="hero-serif m-0 text-5xl text-neutral-900">{stat.value}</p>
+							<p class="mt-2 text-sm font-medium text-(--muted)" data-i18n-es={stat.esLabel} data-i18n-en={stat.label}>{stat.label}</p>
+						</article>
+					))}
+				</div>
+			</div>
+		</section>
+	</main>
+</Layout>
