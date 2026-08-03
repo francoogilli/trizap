@@ -4,6 +4,7 @@ import ChartBarTrendUp from 'reicon-react/icons/ChartBarTrendUp';
 const services = [
 	{
 		icon: 'code',
+		transitionName: 'software-services-title',
 		title: 'Servicios de Software',
 		enTitle: 'Software Services',
 		text: 'Nuestros servicios de software te permitirán trabajar con un experimentado equipo de desarrollo con un alto grado de especialización, optimizando el proceso de desarrollo.',
@@ -11,6 +12,7 @@ const services = [
 	},
 	{
 		icon: 'scrum',
+		transitionName: 'scrum-team-title',
 		title: 'Equipo Scrum',
 		enTitle: 'Scrum Team',
 		text: 'Nuestra experiencia en proyectos y desarrollo de productos nos ha permitido absorber las mejores prácticas del desarrollo de software adaptándonos a diferentes escenarios y equipos implementando la metodología SCRUM.',
@@ -18,6 +20,7 @@ const services = [
 	},
 	{
 		icon: 'people',
+		transitionName: 'staff-augmentation-title',
 		title: 'Aumento del Personal',
 		enTitle: 'Staff Augmentation',
 		text: 'Ofrecemos una amplia variedad de talentosos profesionales preparados para trabajar junto a tu equipo. Ingenieros, desarrolladores, diseñadores UX/UI y scrum masters.',
@@ -77,7 +80,7 @@ const services = [
 						</span>
 					</div>
 
-					<h3 class="mt-9 max-w-66 text-2xl font-semibold leading-[1.05] tracking-[-0.055em] text-neutral-900 sm:text-3xl" data-i18n-es={service.title} data-i18n-en={service.enTitle}>{service.title}</h3>
+					<h3 transition:name={service.transitionName} class="mt-9 max-w-66 text-2xl font-semibold leading-[1.05] tracking-[-0.055em] text-neutral-900 sm:text-3xl" data-i18n-es={service.title} data-i18n-en={service.enTitle}>{service.title}</h3>
 					<p class="mt-5 max-w-85 text-[15px] leading-relaxed tracking-[-0.015em] text-(--muted)" data-i18n-es={service.text} data-i18n-en={service.enText}>{service.text}</p>
 				</article>
 			))}
