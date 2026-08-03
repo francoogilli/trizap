@@ -21,7 +21,7 @@ const hoverProducts = ['Fidel', 'Octus', 'Sanabit'];
 			</p>
 		</div>
 
-		<div class="grid gap-2 sm:grid-cols-3">
+		<div class="grid gap-4 sm:grid-cols-3">
 			{products.map((product) => (
 				<a href="#contact" data-product-card class="group relative flex aspect-1066/1475 flex-col items-center justify-center overflow-hidden rounded-3xl border border-black/12 bg-white px-6 py-8 text-center no-underline transition-colors duration-300 hover:border-transparent hover:bg-neutral-50 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--blue) motion-reduce:transition-none">
 					{hoverProducts.includes(product.name) && (
@@ -47,15 +47,36 @@ const hoverProducts = ['Fidel', 'Octus', 'Sanabit'];
 	</div>
 </section>
 
+<style>
+	[data-product-card] {
+		scale: 1;
+		transition: scale 300ms ease;
+	}
+
+	@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+		[data-product-card]:hover,
+		[data-product-card]:focus-visible {
+			scale: 1.03;
+		}
+	}
+</style>
+
 <script>
 	import { gsap } from 'gsap';
 	import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 	gsap.registerPlugin(ScrollTrigger);
 
-	const section = document.querySelector<HTMLElement>('#products');
+	let initializedSection: HTMLElement | null = null;
+	let cleanupProducts: (() => void) | null = null;
 
-	if (section) {
+	const initializeProducts = () => {
+		const section = document.querySelector<HTMLElement>('#products');
+
+		if (!section || section === initializedSection) return;
+
+		cleanupProducts?.();
+		initializedSection = section;
 		const icon = section.querySelector<HTMLElement>('[data-products-icon]');
 		const title = section.querySelector<HTMLElement>('[data-products-title]');
 		const description = section.querySelector<HTMLElement>('[data-products-description]');
@@ -101,7 +122,6 @@ const hoverProducts = ['Fidel', 'Octus', 'Sanabit'];
 
 					gsap.to(card, {
 						y: isActive ? -6 : 0,
-						scale: isActive ? 1.01 : 1,
 						backgroundColor: isActive ? '#f5f5f5' : '#ffffff',
 						borderColor: isActive ? 'transparent' : 'rgba(0, 0, 0, 0.12)',
 						duration,
@@ -138,5 +158,15 @@ const hoverProducts = ['Fidel', 'Octus', 'Sanabit'];
 
 			return () => cleanupCards.forEach((cleanup) => cleanup());
 		});
-	}
+
+		cleanupProducts = () => media.revert();
+	};
+
+	document.addEventListener('astro:before-swap', () => {
+		cleanupProducts?.();
+		cleanupProducts = null;
+		initializedSection = null;
+	});
+	document.addEventListener('astro:page-load', initializeProducts);
+	initializeProducts();
 </script>
