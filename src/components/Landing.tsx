@@ -136,9 +136,9 @@ export default function Landing() {
 						<ServiceTicker text={text} />
 						<h1 className="hero-title">
 							{language === 'es' ? (
-								<>Somos una comunidad <span className="hero-serif">desarrollando</span> software</>
+								<>Somos una comunidad <span className="fx-glitch" data-text="desarrollando">desarrollando</span> software</>
 							) : (
-								<>We are a community <span className="hero-serif">developing</span> software</>
+								<>We are a community <span className="fx-glitch" data-text="developing">developing</span> software</>
 							)}
 						</h1>
 						<p className="hero-subtitle">{text.subtitle}</p>
