@@ -303,3 +303,13 @@ button {
     scroll-behavior: auto;
   }
 }
+
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-group(about-trizap-title),
+  ::view-transition-group(software-services-title),
+  ::view-transition-group(scrum-team-title),
+  ::view-transition-group(staff-augmentation-title) {
+    animation-duration: 620ms;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
